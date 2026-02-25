@@ -3,164 +3,230 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lonex Lifesteal</title>
+<title>Lonex Lifesteal Network</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 body{
-    font-family:'Orbitron', sans-serif;
-    background:#0a0a0f;
-    color:white;
-    overflow-x:hidden;
+font-family:'Orbitron',sans-serif;
+background:#050507;
+color:white;
+overflow-x:hidden;
+scroll-behavior:smooth;
 }
 
+/* HERO */
 .hero{
-    height:100vh;
-    background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.8)),
-    url('images/spawn.png') center/cover no-repeat;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+background:
+linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.85)),
+url('images/spawn.png') center/cover no-repeat;
+position:relative;
 }
 
 .hero h1{
-    font-size:65px;
-    color:#ff1e1e;
-    text-shadow:0 0 25px red;
-    animation:glow 2s infinite alternate;
+font-size:70px;
+color:#ff2e2e;
+animation:glow 2s infinite alternate;
 }
 
 @keyframes glow{
-    from{ text-shadow:0 0 15px red; }
-    to{ text-shadow:0 0 35px #ff0000; }
+from{ text-shadow:0 0 10px red, 0 0 20px red; }
+to{ text-shadow:0 0 25px #ff0000, 0 0 50px #ff0000; }
 }
 
-.ip-box{
-    margin-top:20px;
-    background:rgba(0,0,0,0.7);
-    padding:20px 40px;
-    border-radius:15px;
-    box-shadow:0 0 25px red;
+/* Glass Box */
+.glass{
+margin-top:30px;
+padding:25px 60px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(15px);
+border:1px solid rgba(255,0,0,0.4);
+border-radius:20px;
+box-shadow:0 0 40px rgba(255,0,0,0.4);
 }
 
+/* Button */
 .btn{
-    display:inline-block;
-    margin-top:25px;
-    padding:15px 40px;
-    background:#ff1e1e;
-    border-radius:50px;
-    color:white;
-    text-decoration:none;
-    transition:0.3s;
-    font-weight:bold;
+margin-top:20px;
+padding:14px 40px;
+border:none;
+border-radius:50px;
+background:#ff1e1e;
+color:white;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
 }
 
 .btn:hover{
-    background:#b30000;
-    transform:scale(1.1);
+transform:scale(1.1);
+background:#b30000;
 }
 
+/* Section */
 .section{
-    padding:80px 10%;
-    text-align:center;
+padding:120px 10%;
+text-align:center;
 }
 
 .cards{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:30px;
-    margin-top:40px;
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:40px;
+margin-top:60px;
 }
 
 .card{
-    background:#111;
-    padding:30px;
-    width:300px;
-    border-radius:20px;
-    box-shadow:0 0 20px rgba(255,0,0,0.4);
-    transition:0.3s;
+width:300px;
+padding:40px;
+border-radius:20px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(15px);
+border:1px solid rgba(255,0,0,0.3);
+transition:0.4s;
+opacity:0;
+transform:translateY(40px);
+}
+
+.card.show{
+opacity:1;
+transform:translateY(0);
 }
 
 .card:hover{
-    transform:translateY(-10px);
-    box-shadow:0 0 30px red;
+transform:translateY(-15px);
+box-shadow:0 0 40px rgba(255,0,0,0.6);
 }
 
+/* Gallery */
 .gallery{
-    padding:80px 5%;
-}
-
-.gallery h2{
-    text-align:center;
-    margin-bottom:40px;
+padding:100px 5%;
 }
 
 .gallery img{
-    width:100%;
-    border-radius:20px;
-    box-shadow:0 0 30px rgba(255,0,0,0.5);
+width:100%;
+border-radius:25px;
+box-shadow:0 0 50px rgba(255,0,0,0.5);
 }
 
+/* Floating Telegram */
+.telegram-float{
+position:fixed;
+bottom:30px;
+right:30px;
+background:#ff1e1e;
+padding:16px 22px;
+border-radius:50px;
+box-shadow:0 0 30px red;
+text-decoration:none;
+color:white;
+font-weight:bold;
+animation:pulse 2s infinite;
+transition:0.3s;
+}
+
+@keyframes pulse{
+0%{ box-shadow:0 0 10px red; }
+50%{ box-shadow:0 0 40px red; }
+100%{ box-shadow:0 0 10px red; }
+}
+
+.telegram-float:hover{
+transform:scale(1.1);
+background:#b30000;
+}
+
+/* Footer */
 footer{
-    padding:30px;
-    background:black;
-    text-align:center;
-    color:gray;
+padding:40px;
+background:black;
+text-align:center;
+color:gray;
+margin-top:100px;
 }
 </style>
 </head>
+
 <body>
 
 <div class="hero">
-    <h1>🔥 LONEX LIFESTEAL 🔥</h1>
-    <div class="ip-box">
-        <h2>IP: play.lonexlifesteal.net</h2>
-        <p>Version: 1.21.x</p>
-    </div>
-    <a href="https://t.me/Lonex_lifesteal_bot" class="btn">Join Telegram Bot</a>
+<h1>🔥 LONEX LIFESTEAL 🔥</h1>
+
+<div class="glass">
+<h2 id="ip">play.lonexlifesteal.net</h2>
+<button class="btn" onclick="copyIP()">Copy IP</button>
+</div>
+
 </div>
 
 <div class="section">
-    <h2>⚔ Server Features</h2>
-    <div class="cards">
-        <div class="card">
-            <h3>💀 Lifesteal System</h3>
-            <p>Kill player = +1 Heart. Death = -1 Heart.</p>
-        </div>
+<h2>⚔ Server Features</h2>
 
-        <div class="card">
-            <h3>🏆 Competitive PvP</h3>
-            <p>Ranked fights and leaderboards.</p>
-        </div>
+<div class="cards">
+<div class="card">
+<h3>💀 Lifesteal System</h3>
+<p>Kill player = +1 Heart. Death = -1 Heart.</p>
+</div>
 
-        <div class="card">
-            <h3>🎁 Weekly Events</h3>
-            <p>Special rewards and custom events.</p>
-        </div>
-    </div>
+<div class="card">
+<h3>🏆 Competitive PvP</h3>
+<p>Ranked fights & leaderboard system.</p>
+</div>
+
+<div class="card">
+<h3>🎁 Weekly Events</h3>
+<p>Special events with exclusive rewards.</p>
+</div>
+</div>
+
 </div>
 
 <div class="gallery">
-    <h2>📸 Server Spawn</h2>
-    <img src="https://github.com/lonexyt01/images/blob/main/spawn.png" alt="Lonex Lifesteal Spawn">
+<h2 style="text-align:center;margin-bottom:50px;">📸 Server Preview</h2>
+<img src="images/spawn.png">
 </div>
 
+<a href="https://t.me/Lonex_lifesteal_bot" class="telegram-float">
+Join Telegram
+</a>
+
 <footer>
-© 2026 Lonex Lifesteal | All Rights Reserved
+© 2026 Lonex Lifesteal Network | All Rights Reserved
 </footer>
+
+<script>
+function copyIP(){
+var ip=document.getElementById("ip").innerText;
+navigator.clipboard.writeText(ip);
+alert("IP Copied Successfully!");
+}
+
+/* Scroll animation */
+const cards=document.querySelectorAll('.card');
+window.addEventListener('scroll',()=>{
+cards.forEach(card=>{
+const position=card.getBoundingClientRect().top;
+const screen=window.innerHeight;
+if(position<screen-100){
+card.classList.add('show');
+}
+});
+});
+</script>
 
 </body>
 </html>
-
-
-
