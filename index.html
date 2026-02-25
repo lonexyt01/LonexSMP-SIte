@@ -4,12 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lonex Lifesteal Network</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-
 body{
 font-family:'Orbitron',sans-serif;
 background:#050507;
@@ -18,24 +16,20 @@ overflow-x:hidden;
 scroll-behavior:smooth;
 }
 
-/* LOADING SCREEN */
-#loader{
+/* Animated background */
+body::before{
+content:"";
 position:fixed;
-width:100%;
-height:100vh;
-background:black;
-display:flex;
-justify-content:center;
-align-items:center;
-z-index:9999;
-font-size:30px;
-color:red;
-animation:fadeOut 2s forwards;
-animation-delay:2s;
+width:200%;
+height:200%;
+background:radial-gradient(circle,rgba(255,0,0,0.15) 1%,transparent 1%);
+background-size:50px 50px;
+animation:move 25s linear infinite;
+z-index:-1;
 }
-
-@keyframes fadeOut{
-to{opacity:0;visibility:hidden;}
+@keyframes move{
+from{transform:translate(0,0);}
+to{transform:translate(-200px,-200px);}
 }
 
 /* HERO */
@@ -46,13 +40,12 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-background:
-linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.85)),
+background:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.9)),
 url('images/spawn.png') center/cover no-repeat;
 }
 
 .hero h1{
-font-size:75px;
+font-size:70px;
 color:#ff2e2e;
 animation:glow 2s infinite alternate;
 }
@@ -89,15 +82,10 @@ transform:scale(1.1);
 background:#b30000;
 }
 
+/* Section */
 .section{
 padding:120px 10%;
 text-align:center;
-}
-
-.stats{
-font-size:28px;
-color:#ff2e2e;
-margin-top:20px;
 }
 
 .cards{
@@ -109,37 +97,27 @@ margin-top:60px;
 }
 
 .card{
-width:300px;
-padding:40px;
+width:280px;
+padding:35px;
 border-radius:20px;
 background:rgba(255,255,255,0.05);
 backdrop-filter:blur(15px);
 border:1px solid rgba(255,0,0,0.3);
 transition:0.4s;
-opacity:0;
-transform:translateY(40px);
-}
-
-.card.show{
-opacity:1;
-transform:translateY(0);
 }
 
 .card:hover{
 transform:translateY(-15px);
-box-shadow:0 0 40px rgba(255,0,0,0.6);
+box-shadow:0 0 40px red;
 }
 
-.gallery{
-padding:100px 5%;
+.price{
+font-size:26px;
+color:#ff2e2e;
+margin:15px 0;
 }
 
-.gallery img{
-width:100%;
-border-radius:25px;
-box-shadow:0 0 50px rgba(255,0,0,0.5);
-}
-
+/* Floating Telegram */
 .telegram-float{
 position:fixed;
 bottom:30px;
@@ -152,7 +130,6 @@ text-decoration:none;
 color:white;
 font-weight:bold;
 animation:pulse 2s infinite;
-transition:0.3s;
 }
 
 @keyframes pulse{
@@ -173,16 +150,12 @@ margin-top:100px;
 
 <body>
 
-<div id="loader">Loading Lonex Network...</div>
-
 <div class="hero">
 <h1>🔥 LONEX LIFESTEAL 🔥</h1>
 
 <div class="glass">
-<h2 id="ip">play.lonexlifesteal.net</h2>
-<div class="stats">
-Online Players: <span id="players">Loading...</span>
-</div>
+<h2 id="ip">192.168.1.13</h2>
+<p>Online: <span id="players">Checking...</span></p>
 <button class="btn" onclick="copyIP()">Copy IP</button>
 </div>
 
@@ -193,30 +166,50 @@ Online Players: <span id="players">Loading...</span>
 
 <div class="cards">
 <div class="card">
-<h3>💀 Lifesteal System</h3>
-<p>Kill player = +1 Heart. Death = -1 Heart.</p>
+<h3>💀 Lifesteal</h3>
+<p>Kill = +1 Heart<br>Death = -1 Heart</p>
 </div>
 
 <div class="card">
-<h3>🏆 Ranked PvP</h3>
-<p>Competitive fights & leaderboard system.</p>
+<h3>🏆 PvP Arena</h3>
+<p>Competitive Ranked System</p>
 </div>
 
 <div class="card">
 <h3>🎁 Weekly Events</h3>
-<p>Exclusive custom events every week.</p>
+<p>Exclusive Rewards</p>
 </div>
 </div>
 
 </div>
 
-<div class="gallery">
-<h2 style="text-align:center;margin-bottom:50px;">📸 Server Preview</h2>
-<img src="images/spawn.png">
+<div class="section">
+<h2>💰 Donate Ranks</h2>
+
+<div class="cards">
+<div class="card">
+<h3>VIP</h3>
+<div class="price">$5</div>
+<button class="btn">Buy</button>
+</div>
+
+<div class="card">
+<h3>MVP</h3>
+<div class="price">$10</div>
+<button class="btn">Buy</button>
+</div>
+
+<div class="card">
+<h3>ELITE</h3>
+<div class="price">$20</div>
+<button class="btn">Buy</button>
+</div>
+</div>
+
 </div>
 
 <a href="https://t.me/Lonex_lifesteal_bot" class="telegram-float">
-Join Telegram
+Telegram
 </a>
 
 <footer>
@@ -225,22 +218,11 @@ Join Telegram
 
 <script>
 function copyIP(){
-navigator.clipboard.writeText("play.lonexlifesteal.net");
+navigator.clipboard.writeText("192.168.1.13");
 alert("IP Copied!");
 }
 
-/* Scroll reveal */
-const cards=document.querySelectorAll('.card');
-window.addEventListener('scroll',()=>{
-cards.forEach(card=>{
-if(card.getBoundingClientRect().top<window.innerHeight-100){
-card.classList.add('show');
-}
-});
-});
-
-/* Player Count API */
-fetch("https://api.mcsrvstat.us/2/play.lonexlifesteal.net")
+fetch("https://api.mcsrvstat.us/2/192.168.1.13")
 .then(res=>res.json())
 .then(data=>{
 if(data.players){
@@ -248,6 +230,9 @@ document.getElementById("players").innerText=data.players.online;
 }else{
 document.getElementById("players").innerText="Offline";
 }
+})
+.catch(()=>{
+document.getElementById("players").innerText="Offline";
 });
 </script>
 
