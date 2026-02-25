@@ -4,103 +4,161 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lonex Lifesteal</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+
 <style>
-body {
-    margin: 0;
-    font-family: 'Orbitron', sans-serif;
-    background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
-    color: white;
-    text-align: center;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-header {
-    padding: 80px 20px;
-    background: url('https://wallpapercave.com/wp/wp2757874.jpg') no-repeat center center/cover;
+body{
+    font-family:'Orbitron', sans-serif;
+    background:#0a0a0f;
+    color:white;
+    overflow-x:hidden;
 }
 
-h1 {
-    font-size: 60px;
-    text-shadow: 0 0 20px red;
+.hero{
+    height:100vh;
+    background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.8)),
+    url('images/spawn.png') center/cover no-repeat;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
 }
 
-.ip-box {
-    background: #111;
-    padding: 20px;
-    display: inline-block;
-    border-radius: 10px;
-    margin-top: 20px;
-    box-shadow: 0 0 20px red;
+.hero h1{
+    font-size:65px;
+    color:#ff1e1e;
+    text-shadow:0 0 25px red;
+    animation:glow 2s infinite alternate;
 }
 
-.button {
-    display: inline-block;
-    margin: 20px;
-    padding: 15px 40px;
-    background: red;
-    color: white;
-    text-decoration: none;
-    border-radius: 50px;
-    transition: 0.3s;
+@keyframes glow{
+    from{ text-shadow:0 0 15px red; }
+    to{ text-shadow:0 0 35px #ff0000; }
 }
 
-.button:hover {
-    background: darkred;
-    transform: scale(1.1);
+.ip-box{
+    margin-top:20px;
+    background:rgba(0,0,0,0.7);
+    padding:20px 40px;
+    border-radius:15px;
+    box-shadow:0 0 25px red;
 }
 
-section {
-    padding: 60px 20px;
+.btn{
+    display:inline-block;
+    margin-top:25px;
+    padding:15px 40px;
+    background:#ff1e1e;
+    border-radius:50px;
+    color:white;
+    text-decoration:none;
+    transition:0.3s;
+    font-weight:bold;
 }
 
-.card {
-    background: #111;
-    padding: 30px;
-    margin: 20px auto;
-    max-width: 600px;
-    border-radius: 15px;
-    box-shadow: 0 0 15px red;
+.btn:hover{
+    background:#b30000;
+    transform:scale(1.1);
 }
 
-footer {
-    padding: 20px;
-    background: black;
-    color: gray;
+.section{
+    padding:80px 10%;
+    text-align:center;
+}
+
+.cards{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:30px;
+    margin-top:40px;
+}
+
+.card{
+    background:#111;
+    padding:30px;
+    width:300px;
+    border-radius:20px;
+    box-shadow:0 0 20px rgba(255,0,0,0.4);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 30px red;
+}
+
+.gallery{
+    padding:80px 5%;
+}
+
+.gallery h2{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.gallery img{
+    width:100%;
+    border-radius:20px;
+    box-shadow:0 0 30px rgba(255,0,0,0.5);
+}
+
+footer{
+    padding:30px;
+    background:black;
+    text-align:center;
+    color:gray;
 }
 </style>
 </head>
 <body>
 
-<header>
+<div class="hero">
     <h1>🔥 LONEX LIFESTEAL 🔥</h1>
     <div class="ip-box">
         <h2>IP: play.lonexlifesteal.net</h2>
         <p>Version: 1.21.x</p>
     </div>
-    <br>
-    <a href="https://t.me/YOUR_LINK" class="button">Telegram</a>
-</header>
+    <a href="https://t.me/Lonex_lifesteal_bot" class="btn">Join Telegram Bot</a>
+</div>
 
-<section>
-    <div class="card">
-        <h2>💀 Lifesteal System</h2>
-        <p>Har bir o'ldirishda yurak olasan. O'lsang yurak yo'qotasan.</p>
-    </div>
+<div class="section">
+    <h2>⚔ Server Features</h2>
+    <div class="cards">
+        <div class="card">
+            <h3>💀 Lifesteal System</h3>
+            <p>Kill player = +1 Heart. Death = -1 Heart.</p>
+        </div>
 
-    <div class="card">
-        <h2>⚔ PvP Arena</h2>
-        <p>Eng kuchlilar uchun maxsus arena va turnirlar.</p>
-    </div>
+        <div class="card">
+            <h3>🏆 Competitive PvP</h3>
+            <p>Ranked fights and leaderboards.</p>
+        </div>
 
-    <div class="card">
-        <h2>💎 Custom Events</h2>
-        <p>Har hafta eventlar va sovrinlar.</p>
+        <div class="card">
+            <h3>🎁 Weekly Events</h3>
+            <p>Special rewards and custom events.</p>
+        </div>
     </div>
-</section>
+</div>
+
+<div class="gallery">
+    <h2>📸 Server Spawn</h2>
+    <img src="images/spawn.png" alt="Lonex Lifesteal Spawn">
+</div>
 
 <footer>
-    © 2026 Lonex Lifesteal Server | All Rights Reserved
+© 2026 Lonex Lifesteal | All Rights Reserved
 </footer>
 
 </body>
 </html>
+
