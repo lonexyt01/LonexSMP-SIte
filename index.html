@@ -141,6 +141,32 @@ body::before{
   margin:15px 0;
 }
 
+/* UPDATES / BUGS / REPORTS */
+.update-card{
+  width:300px;
+  padding:25px;
+  margin:15px;
+  border-radius:25px;
+  background:rgba(0,0,0,0.2);
+  border:1px solid rgba(0,255,255,0.4);
+  box-shadow:0 0 40px #0ff;
+  transition:0.3s;
+}
+.update-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 50px #0ff,0 0 70px #f0f;
+}
+.update-card h4{
+  background:linear-gradient(45deg,#0ff,#f0f,#0ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:10px;
+}
+.update-card p{
+  font-size:15px;
+  line-height:1.4;
+}
+
 /* Floating Telegram */
 .telegram-float{
   position:fixed;
@@ -221,6 +247,25 @@ footer{
 <div class="card"><h3>Duke</h3><div class="price">🎖 Unique Armor</div><button class="btn" onclick="rankInfo('Duke')">Info</button></div>
 <div class="card"><h3>King</h3><div class="price">🎖 Legendary Status</div><button class="btn" onclick="rankInfo('King')">Info</button></div>
 <div class="card"><h3>Media</h3><div class="price">🎥 Youtube & Streams</div><button class="btn" onclick="rankInfo('Media')">Info</button></div>
+</div>
+</div>
+
+<!-- UPDATES / BUGS / REPORTS SECTION -->
+<div class="section">
+<h2>🛠 Updates / Bugs / Reports</h2>
+<div class="cards">
+<div class="update-card">
+<h4>Update 1.2.0</h4>
+<p>New PvP arena added, Lifesteal hearts balanced, weekly events improved.</p>
+</div>
+<div class="update-card">
+<h4>Bug Fixes</h4>
+<p>Fixed rare server crash on login & fixed Lifesteal miscount bug.</p>
+</div>
+<div class="update-card">
+<h4>Player Reports</h4>
+<p>Reported exploit in arena patched. Please report new issues via Telegram bot.</p>
+</div>
 </div>
 </div>
 
