@@ -272,9 +272,10 @@ document.getElementById("players").innerText="Offline";
 <h2>📝 Vote & Rewards</h2>
 
 <div id="auth">
-  <h3>Login / Register</h3>
-  <input type="text" id="username" placeholder="Username">
-  <button class="btn" onclick="login()">Login/Register</button>
+  <h3>Register / Login</h3>
+  <input type="email" id="email" placeholder="Email">
+  <input type="text" id="username" placeholder="O'yindagi Username">
+  <button class="btn" onclick="register()">Register/Login</button>
 </div>
 
 <div id="profile" style="display:none;">
@@ -286,40 +287,48 @@ document.getElementById("players").innerText="Offline";
 
 <script>
 let user = null;
+const serverIP = "84.54.120.86";
 
-function login(){
-    const name = document.getElementById("username").value.trim();
-    if(name === "") { alert("Username kiriting!"); return; }
-    // Foydalanuvchini yaratish / login qilish
+function register(){
+    const email = document.getElementById("email").value.trim();
+    const username = document.getElementById("username").value.trim();
+    if(email === "" || username === "") { alert("Email va Username kiriting!"); return; }
+
+    // Foydalanuvchi obyekti yaratish
     user = {
-        name: name,
+        email: email,
+        username: username,
         voteKeys: 0,
         hasVoted: false
     };
+
     document.getElementById("auth").style.display = "none";
     document.getElementById("profile").style.display = "block";
-    document.getElementById("profileName").innerText = "Welcome, " + user.name;
+    document.getElementById("profileName").innerText = "Welcome, " + user.username;
     updateKeys();
 }
 
 function vote(){
     if(!user) return alert("Login qilishingiz kerak!");
-    if(user.hasVoted) {
-        alert("Siz allaqachon ovoz berdingiz!");
-        return;
-    }
-    // Ovoz berish (simulyatsiya)
-    alert("Ovoz berildi! Sizga 1 Vote Key berildi.");
-    user.voteKeys += 1;
-    user.hasVoted = true;
-    updateKeys();
+    if(user.hasVoted) return alert("Siz allaqachon vote qilgansiz!");
+
+    // Server status tekshirish
+    fetch(`https://api.mcsrvstat.us/2/${serverIP}`)
+    .then(res => res.json())
+    .then(data => {
+        if(data.online){
+            alert("Server online! Sizga 1 Vote Key berildi.");
+            user.voteKeys += 1;
+            user.hasVoted = true;
+            updateKeys();
+        } else {
+            alert("Server offline, vote qilolmaysiz.");
+        }
+    })
+    .catch(()=>{ alert("Server tekshirilayotganda xatolik yuz berdi."); });
 }
 
 function updateKeys(){
     document.getElementById("voteKeys").innerText = user.voteKeys;
 }
 </script>
-
-
-
-
