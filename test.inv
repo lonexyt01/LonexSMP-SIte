@@ -1,0 +1,3 @@
+MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/voteDB?retryWrites=true&w=majority
+TELEGRAM_TOKEN=<YourBotToken>
+TELEGRAM_CHAT_ID=<YourChatID>
