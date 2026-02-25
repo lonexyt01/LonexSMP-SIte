@@ -444,3 +444,218 @@ footer{
 </head>
 <body>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lonex Lifesteal Vote</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+    font-family:'Orbitron',sans-serif;
+    background:#050507;
+    color:white;
+    overflow-x:hidden;
+    scroll-behavior:smooth;
+}
+
+/* Animated background */
+body::before{
+    content:"";
+    position:fixed;
+    width:200%;
+    height:200%;
+    background:radial-gradient(circle,rgba(255,0,0,0.15) 1%,transparent 1%);
+    background-size:50px 50px;
+    animation:move 25s linear infinite;
+    z-index:-1;
+}
+@keyframes move{
+    from{transform:translate(0,0);}
+    to{transform:translate(-200px,-200px);}
+}
+
+/* Hero */
+.hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.9)),
+               url('images/spawn.png') center/cover no-repeat;
+}
+
+.hero h1{
+    font-size:60px;
+    color:#ff2e2e;
+    animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    from{text-shadow:0 0 15px red;}
+    to{text-shadow:0 0 45px #ff0000;}
+}
+
+/* Glass forms */
+.glass{
+    margin-top:30px;
+    padding:30px 50px;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(15px);
+    border-radius:20px;
+    border:1px solid rgba(255,0,0,0.4);
+    box-shadow:0 0 40px rgba(255,0,0,0.4);
+    width:300px;
+}
+
+input{
+    width:100%;
+    padding:12px 15px;
+    margin:10px 0;
+    border-radius:10px;
+    border:1px solid rgba(255,0,0,0.3);
+    background:rgba(255,255,255,0.05);
+    color:white;
+    font-size:16px;
+}
+
+input::placeholder{
+    color: rgba(255,255,255,0.6);
+}
+
+.btn{
+    margin-top:15px;
+    padding:14px 40px;
+    border:none;
+    border-radius:50px;
+    background:#ff1e1e;
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+    font-weight:bold;
+    width:100%;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+    background:#b30000;
+}
+
+/* Profile */
+#profile h3{
+    margin-bottom:10px;
+}
+
+#profile p{
+    font-size:18px;
+    margin-bottom:15px;
+}
+
+/* Footer */
+footer{
+    padding:40px;
+    background:black;
+    text-align:center;
+    color:gray;
+    margin-top:50px;
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+<h1>🔥 LONEX LIFESTEAL 🔥</h1>
+
+<div class="glass" id="auth">
+<h3>Register / Login</h3>
+<input type="email" id="email" placeholder="Email">
+<input type="text" id="username" placeholder="O'yindagi Username">
+<button class="btn" onclick="register()">Register/Login</button>
+</div>
+
+<div class="glass" id="profile" style="display:none;">
+<h3 id="profileName"></h3>
+<p>Vote Keys: <span id="voteKeys">0</span></p>
+<p>Your Vote Key: <span id="voteCode">-</span></p>
+<button class="btn" onclick="vote()">Vote</button>
+</div>
+</div>
+
+<footer>
+© 2026 Lonex Lifesteal Network
+</footer>
+
+<script>
+let user = null;
+const serverIP = "84.54.120.86";
+
+// Register/Login
+function register(){
+    const email = document.getElementById("email").value.trim();
+    const username = document.getElementById("username").value.trim();
+    if(email === "" || username === "") { alert("Email va Username kiriting!"); return; }
+
+    let savedUser = JSON.parse(localStorage.getItem(email));
+    if(savedUser){
+        user = savedUser;
+        alert("Welcome back, " + user.username);
+    } else {
+        user = {
+            email: email,
+            username: username,
+            voteKeys: 0,
+            hasVoted: false,
+            voteCode: "-"
+        };
+        localStorage.setItem(email, JSON.stringify(user));
+        alert("Register bo‘ldingiz!");
+    }
+
+    document.getElementById("auth").style.display = "none";
+    document.getElementById("profile").style.display = "block";
+    document.getElementById("profileName").innerText = "Welcome, " + user.username;
+    updateProfile();
+}
+
+// Vote
+function vote(){
+    if(!user) return alert("Login qilishingiz kerak!");
+    if(user.hasVoted) return alert("Siz allaqachon vote qilgansiz!");
+
+    fetch(`https://api.mcsrvstat.us/2/${serverIP}`)
+    .then(res => res.json())
+    .then(data => {
+        if(data.online){
+            let code = generateVoteKey();
+            user.voteKeys += 1;
+            user.hasVoted = true;
+            user.voteCode = code;
+            localStorage.setItem(user.email, JSON.stringify(user));
+            alert("Server online! Sizga Vote Key berildi: " + code);
+            updateProfile();
+        } else {
+            alert("Server offline, vote qilolmaysiz.");
+        }
+    })
+    .catch(()=>{ alert("Server tekshirilayotganda xatolik yuz berdi."); });
+}
+
+// Update profile display
+function updateProfile(){
+    document.getElementById("voteKeys").innerText = user.voteKeys;
+    document.getElementById("voteCode").innerText = user.voteCode;
+}
+
+// Generate random vote key
+function generateVoteKey(){
+    return Math.random().toString(36).substring(2,10).toUpperCase();
+}
+</script>
+
+</body>
+</html>
