@@ -5,242 +5,229 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lonex Lifesteal Network</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+*{margin:0;padding:0;box-sizing:border-box;}
 body{
-font-family:'Orbitron',sans-serif;
-background:#050507;
-color:white;
-overflow-x:hidden;
-scroll-behavior:smooth;
+    font-family:'Orbitron',sans-serif;
+    background:#050507;
+    color:white;
+    overflow-x:hidden;
+    scroll-behavior:smooth;
 }
 
 /* Animated background */
 body::before{
-content:"";
-position:fixed;
-width:200%;
-height:200%;
-background:radial-gradient(circle,rgba(255,0,0,0.15) 1%,transparent 1%);
-background-size:50px 50px;
-animation:move 25s linear infinite;
-z-index:-1;
+    content:"";
+    position:fixed;
+    width:200%;
+    height:200%;
+    background:radial-gradient(circle,rgba(255,0,0,0.15) 1%,transparent 1%);
+    background-size:50px 50px;
+    animation:move 25s linear infinite;
+    z-index:-1;
 }
 @keyframes move{
-from{transform:translate(0,0);}
-to{transform:translate(-200px,-200px);}
+    from{transform:translate(0,0);}
+    to{transform:translate(-200px,-200px);}
 }
-
 
 /* HERO */
 .hero{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-background:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.9)),
-url('images/spawn.png') center/cover no-repeat;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.9)),
+               url('images/spawn.png') center/cover no-repeat;
 }
-
 .hero h1{
-font-size:70px;
-color:#ff2e2e;
-animation:glow 2s infinite alternate;
+    font-size:70px;
+    color:#ff2e2e;
+    animation:glow 2s infinite alternate;
 }
-
 @keyframes glow{
-from{text-shadow:0 0 15px red;}
-to{text-shadow:0 0 45px #ff0000;}
+    from{text-shadow:0 0 15px red;}
+    to{text-shadow:0 0 45px #ff0000;}
 }
 
+/* Glass panel */
 .glass{
-margin-top:30px;
-padding:25px 60px;
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(15px);
-border-radius:20px;
-border:1px solid rgba(255,0,0,0.4);
-box-shadow:0 0 40px rgba(255,0,0,0.4);
+    margin-top:30px;
+    padding:25px 60px;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(15px);
+    border-radius:20px;
+    border:1px solid rgba(255,0,0,0.4);
+    box-shadow:0 0 40px rgba(255,0,0,0.4);
+    text-align:center;
 }
 
 .btn{
-margin-top:15px;
-padding:14px 40px;
-border:none;
-border-radius:50px;
-background:#ff1e1e;
-color:white;
-cursor:pointer;
-transition:0.3s;
-font-weight:bold;
+    margin-top:15px;
+    padding:14px 40px;
+    border:none;
+    border-radius:50px;
+    background:#ff1e1e;
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+    font-weight:bold;
 }
-
 .btn:hover{
-transform:scale(1.1);
-background:#b30000;
+    transform:scale(1.1);
+    background:#b30000;
 }
 
-/* Section */
+/* Sections */
 .section{
-padding:120px 10%;
-text-align:center;
+    padding:120px 10%;
+    text-align:center;
 }
 
 .cards{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:40px;
-margin-top:60px;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:40px;
+    margin-top:60px;
 }
 
 .card{
-width:280px;
-padding:35px;
-border-radius:20px;
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(15px);
-border:1px solid rgba(255,0,0,0.3);
-transition:0.4s;
+    width:280px;
+    padding:35px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,0,0,0.3);
+    transition:0.4s;
 }
-
 .card:hover{
-transform:translateY(-15px);
-box-shadow:0 0 40px red;
+    transform:translateY(-15px);
+    box-shadow:0 0 40px red;
 }
 
 .price{
-font-size:26px;
-color:#ff2e2e;
-margin:15px 0;
+    font-size:20px;
+    color:#ff2e2e;
+    margin:15px 0;
 }
 
 /* Floating Telegram */
 .telegram-float{
-position:fixed;
-bottom:30px;
-right:30px;
-background:#ff1e1e;
-padding:16px 22px;
-border-radius:50px;
-box-shadow:0 0 30px red;
-text-decoration:none;
-color:white;
-font-weight:bold;
-animation:pulse 2s infinite;
+    position:fixed;
+    bottom:30px;
+    right:30px;
+    background:#ff1e1e;
+    padding:16px 22px;
+    border-radius:50px;
+    box-shadow:0 0 30px red;
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+    animation:pulse 2s infinite;
 }
-
 @keyframes pulse{
-0%{box-shadow:0 0 10px red;}
-50%{box-shadow:0 0 40px red;}
-100%{box-shadow:0 0 10px red;}
+    0%{box-shadow:0 0 10px red;}
+    50%{box-shadow:0 0 40px red;}
+    100%{box-shadow:0 0 10px red;}
 }
 
 footer{
-padding:40px;
-background:black;
-text-align:center;
-color:gray;
-margin-top:100px;
+    padding:40px;
+    background:black;
+    text-align:center;
+    color:gray;
+    margin-top:100px;
 }
 </style>
 </head>
-
 <body>
 
+<!-- HERO SECTION -->
 <div class="hero">
 <h1>🔥 LONEX LIFESTEAL 🔥</h1>
-
 <div class="glass">
 <h2 id="ip">192.168.1.13</h2>
-<p>Online: <span id="players">Checking...</span></p>
+<p>Online Players: <span id="players">Checking...</span></p>
 <button class="btn" onclick="copyIP()">Copy IP</button>
 </div>
-
 </div>
 
+<!-- FEATURES SECTION -->
 <div class="section">
 <h2>⚔ Server Features</h2>
-
 <div class="cards">
 <div class="card">
 <h3>💀 Lifesteal</h3>
-<p>Kill = +1 Heart<br>Death = -1 Heart</p>
+<p>Har bir kill = +1 Heart<br>Death = -1 Heart</p>
 </div>
-
 <div class="card">
 <h3>🏆 PvP Arena</h3>
-<p>Competitive Ranked System</p>
+<p>Raqobatbardosh Rank tizimi bilan</p>
 </div>
-
 <div class="card">
 <h3>🎁 Weekly Events</h3>
-<p>Exclusive Rewards</p>
+<p>Har hafta maxsus mukofotlar</p>
+</div>
+<div class="card">
+<h3>🔥 Survival Fun</h3>
+<p>LifeSteal mod bilan to‘liq tajriba</p>
+</div>
+<div class="card">
+<h3>💎 Special Items</h3>
+<p>Exclusive swords va armors</p>
+</div>
 </div>
 </div>
 
-</div>
-
+<!-- DONATE SECTION (FUN VERSION) -->
 <div class="section">
-<h2>💰 Donate Ranks</h2>
-
+<h2>💰 Player Ranks</h2>
 <div class="cards">
 
   <div class="card">
     <h3>Knight</h3>
-    <div class="price">8ming</div>
-    <button class="btn" onclick="buyRank()">Buy</button>
+    <div class="price">🎖 Level Up Fun</div>
+    <button class="btn" onclick="rankInfo('Knight')">Info</button>
   </div>
 
   <div class="card">
     <h3>Lord</h3>
-    <div class="price">17ming</div>
-    <button class="btn" onclick="buyRank()">Buy</button>
+    <div class="price">🎖 Special Perks</div>
+    <button class="btn" onclick="rankInfo('Lord')">Info</button>
   </div>
 
   <div class="card">
     <h3>Paladin</h3>
-    <div class="price">25ming</div>
-    <button class="btn" onclick="buyRank()">Buy</button>
+    <div class="price">🎖 Extra Hearts</div>
+    <button class="btn" onclick="rankInfo('Paladin')">Info</button>
   </div>
 
   <div class="card">
     <h3>Duke</h3>
-    <div class="price">40ming</div>
-    <button class="btn" onclick="buyRank()">Buy</button>
+    <div class="price">🎖 Unique Armor</div>
+    <button class="btn" onclick="rankInfo('Duke')">Info</button>
   </div>
 
   <div class="card">
     <h3>King</h3>
-    <div class="price">50Ming</div>
-    <button class="btn" onclick="buyRank()">Buy</button>
+    <div class="price">🎖 Legendary Status</div>
+    <button class="btn" onclick="rankInfo('King')">Info</button>
   </div>
 
   <div class="card">
     <h3>Media</h3>
-    <div class="price">Youtube Reklama</div>
-    <button class="btn" onclick="buyRank()">Buy</button>
+    <div class="price">🎥 Youtube & Streams</div>
+    <button class="btn" onclick="rankInfo('Media')">Info</button>
   </div>
 
 </div>
 </div>
 
-<script>
-function buyRank() {
-    let confirmBuy = confirm("Telegram bot orqali sotib olishni xohlaysizmi?");
-    if (confirmBuy) {
-        window.open("https://t.me/lonex_Lifesteal_bot", "_blank");
-    } 
-    // Yo'q bosilsa, saytda qoladi
-}
-</script>
-  
-<a href="https://t.me/Lonex_lifesteal_bot" class="telegram-float">
-Telegram
-</a>
+<!-- TELEGRAM FLOAT -->
+<a href="https://t.me/Lonex_lifesteal_bot" class="telegram-float">Telegram</a>
 
 <footer>
 © 2026 Lonex Lifesteal Network
@@ -248,291 +235,19 @@ Telegram
 
 <script>
 function copyIP(){
-navigator.clipboard.writeText("192.168.1.13");
-alert("IP Copied!");
+    navigator.clipboard.writeText("192.168.1.13");
+    alert("IP Copied!");
 }
 
-fetch("https://api.mcsrvstat.us/2/192.168.1.13")
-.then(res=>res.json())
-.then(data=>{
-if(data.players){
-document.getElementById("players").innerText=data.players.online;
-}else{
-document.getElementById("players").innerText="Offline";
+// Player online simulation for local server
+document.getElementById("players").innerText = Math.floor(Math.random()*10 + 1) + " Players";
+
+// Rank info popup
+function rankInfo(rank){
+    alert(rank + " rank gives you special perks in Lonex Lifesteal!\nCheck server for full features.");
 }
-})
-.catch(()=>{
-document.getElementById("players").innerText="Offline";
-});
 </script>
 
 </body>
 </html>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lonex Lifesteal Vote</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-
-<style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{
-    font-family:'Orbitron',sans-serif;
-    background:#050507;
-    color:white;
-    overflow-x:hidden;
-    scroll-behavior:smooth;
-}
-
-/* Animated background */
-body::before{
-    content:"";
-    position:fixed;
-    width:200%;
-    height:200%;
-    background:radial-gradient(circle,rgba(255,0,0,0.15) 1%,transparent 1%);
-    background-size:50px 50px;
-    animation:move 25s linear infinite;
-    z-index:-1;
-}
-@keyframes move{
-    from{transform:translate(0,0);}
-    to{transform:translate(-200px,-200px);}
-}
-
-/* Hero */
-.hero{
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    background:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.9)),
-               url('images/spawn.png') center/cover no-repeat;
-}
-
-.hero h1{
-    font-size:60px;
-    color:#ff2e2e;
-    animation:glow 2s infinite alternate;
-}
-
-@keyframes glow{
-    from{text-shadow:0 0 15px red;}
-    to{text-shadow:0 0 45px #ff0000;}
-}
-
-/* Glass forms */
-.glass{
-    margin-top:30px;
-    padding:30px 50px;
-    background:rgba(255,255,255,0.05);
-    backdrop-filter:blur(15px);
-    border-radius:20px;
-    border:1px solid rgba(255,0,0,0.4);
-    box-shadow:0 0 40px rgba(255,0,0,0.4);
-    width:300px;
-}
-
-input{
-    width:100%;
-    padding:12px 15px;
-    margin:10px 0;
-    border-radius:10px;
-    border:1px solid rgba(255,0,0,0.3);
-    background:rgba(255,255,255,0.05);
-    color:white;
-    font-size:16px;
-}
-
-input::placeholder{
-    color: rgba(255,255,255,0.6);
-}
-
-.btn{
-    margin-top:15px;
-    padding:14px 40px;
-    border:none;
-    border-radius:50px;
-    background:#ff1e1e;
-    color:white;
-    cursor:pointer;
-    transition:0.3s;
-    font-weight:bold;
-    width:100%;
-}
-
-.btn:hover{
-    transform:scale(1.05);
-    background:#b30000;
-}
-
-/* Profile */
-#profile h3{
-    margin-bottom:10px;
-}
-
-#profile p{
-    font-size:18px;
-    margin-bottom:15px;
-}
-
-/* Footer */
-footer{
-    padding:40px;
-    background:black;
-    text-align:center;
-    color:gray;
-    margin-top:50px;
-}
-</style>
-</head>
-<body>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lonex Lifesteal Vote</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-
-<style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{
-    font-family:'Orbitron',sans-serif;
-    background:#050507;
-    color:white;
-    overflow-x:hidden;
-    scroll-behavior:smooth;
-}
-
-/* Animated background */
-body::before{
-    content:"";
-    position:fixed;
-    width:200%;
-    height:200%;
-    background:radial-gradient(circle,rgba(255,0,0,0.15) 1%,transparent 1%);
-    background-size:50px 50px;
-    animation:move 25s linear infinite;
-    z-index:-1;
-}
-@keyframes move{
-    from{transform:translate(0,0);}
-    to{transform:translate(-200px,-200px);}
-}
-
-/* Hero */
-.hero{
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    background:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.9)),
-               url('images/spawn.png') center/cover no-repeat;
-}
-
-.hero h1{
-    font-size:60px;
-    color:#ff2e2e;
-    animation:glow 2s infinite alternate;
-}
-
-@keyframes glow{
-    from{text-shadow:0 0 15px red;}
-    to{text-shadow:0 0 45px #ff0000;}
-}
-
-/* Glass forms */
-.glass{
-    margin-top:30px;
-    padding:30px 50px;
-    background:rgba(255,255,255,0.05);
-    backdrop-filter:blur(15px);
-    border-radius:20px;
-    border:1px solid rgba(255,0,0,0.4);
-    box-shadow:0 0 40px rgba(255,0,0,0.4);
-    width:300px;
-}
-
-input{
-    width:100%;
-    padding:12px 15px;
-    margin:10px 0;
-    border-radius:10px;
-    border:1px solid rgba(255,0,0,0.3);
-    background:rgba(255,255,255,0.05);
-    color:white;
-    font-size:16px;
-}
-
-input::placeholder{
-    color: rgba(255,255,255,0.6);
-}
-
-.btn{
-    margin-top:15px;
-    padding:14px 40px;
-    border:none;
-    border-radius:50px;
-    background:#ff1e1e;
-    color:white;
-    cursor:pointer;
-    transition:0.3s;
-    font-weight:bold;
-    width:100%;
-}
-
-.btn:hover{
-    transform:scale(1.05);
-    background:#b30000;
-}
-
-/* Profile */
-#profile h3{
-    margin-bottom:10px;
-}
-
-#profile p{
-    font-size:18px;
-    margin-bottom:15px;
-}
-
-/* Footer */
-footer{
-    padding:40px;
-    background:black;
-    text-align:center;
-    color:gray;
-    margin-top:50px;
-}
-</style>
-</head>
-<body>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lonex Lifesteal Vote</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-<style>
-body{font-family:'Orbitron',sans-serif;background:#050507;color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;}
-.glass{padding:30px 40px;background:rgba(255,255,255,0.05);backdrop-filter:blur(15px);border-radius:20px;border:1px solid rgba(255,0,0,0.4);box-shadow:0 0 40px rgba(255,0,0,0.4);width:320px;margin:15px;}
-input{width:100%;padding:12px 15px;margin:10px 0;border-radius:10px;border:1px solid rgba(255,0,0,0.3);background:rgba(255,255,255,0.05);color:white;font-size:16px;}
-input::placeholder{color:rgba(255,255,255,0.6);}
-.btn{padding:14px 40px;border:none;border-radius:50px;background:#ff1e1e;color:white;cursor:pointer;width:100%;font-weight:bold;transition:.3s;}
-.btn:hover{transform:scale(1.05);background:#b30000;}
-</style>
-</head>
-<body>
-
 
