@@ -187,43 +187,55 @@ margin-top:100px;
 <h2>💰 Donate Ranks</h2>
 
 <div class="cards">
+
   <div class="card">
     <h3>Knight</h3>
     <div class="price">8ming</div>
-    <a href="https://t.me/lonex_Lifesteal_bot" target="_blank" class="btn">Buy</a>
+    <button class="btn" onclick="buyRank()">Buy</button>
   </div>
 
   <div class="card">
     <h3>Lord</h3>
     <div class="price">17ming</div>
-    <a href="https://t.me/lonex_Lifesteal_bot" target="_blank" class="btn">Buy</a>
+    <button class="btn" onclick="buyRank()">Buy</button>
   </div>
 
   <div class="card">
     <h3>Paladin</h3>
     <div class="price">25ming</div>
-    <a href="https://t.me/lonex_Lifesteal_bot" target="_blank" class="btn">Buy</a>
+    <button class="btn" onclick="buyRank()">Buy</button>
   </div>
 
   <div class="card">
     <h3>Duke</h3>
     <div class="price">40ming</div>
-    <a href="https://t.me/lonex_Lifesteal_bot" target="_blank" class="btn">Buy</a>
+    <button class="btn" onclick="buyRank()">Buy</button>
   </div>
 
   <div class="card">
     <h3>King</h3>
     <div class="price">50Ming</div>
-    <a href="https://t.me/lonex_Lifesteal_bot" target="_blank" class="btn">Buy</a>
+    <button class="btn" onclick="buyRank()">Buy</button>
   </div>
 
   <div class="card">
     <h3>Media</h3>
     <div class="price">Youtube Reklama</div>
-    <a href="https://t.me/lonex_Lifesteal_bot" target="_blank" class="btn">Buy</a>
+    <button class="btn" onclick="buyRank()">Buy</button>
   </div>
+
 </div>
 </div>
+
+<script>
+function buyRank() {
+    let confirmBuy = confirm("Telegram bot orqali sotib olishni xohlaysizmi?");
+    if (confirmBuy) {
+        window.open("https://t.me/lonex_Lifesteal_bot", "_blank");
+    } 
+    // Yo'q bosilsa, saytda qoladi
+}
+</script>
   
 <a href="https://t.me/Lonex_lifesteal_bot" class="telegram-float">
 Telegram
@@ -255,6 +267,7 @@ document.getElementById("players").innerText="Offline";
 
 </body>
 </html>
+
 
 
 
