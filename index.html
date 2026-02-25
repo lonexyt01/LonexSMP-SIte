@@ -32,6 +32,58 @@ from{transform:translate(0,0);}
 to{transform:translate(-200px,-200px);}
 }
 
+<div class="section">
+<h2>📝 Vote & Rewards</h2>
+
+<div id="auth">
+  <h3>Login / Register</h3>
+  <input type="text" id="username" placeholder="Username">
+  <button class="btn" onclick="login()">Login/Register</button>
+</div>
+
+<div id="profile" style="display:none;">
+  <h3 id="profileName"></h3>
+  <p>Vote Keys: <span id="voteKeys">0</span></p>
+  <button class="btn" onclick="vote()">Vote</button>
+</div>
+</div>
+
+<script>
+let user = null;
+
+function login(){
+    const name = document.getElementById("username").value.trim();
+    if(name === "") { alert("Username kiriting!"); return; }
+    // Foydalanuvchini yaratish / login qilish
+    user = {
+        name: name,
+        voteKeys: 0,
+        hasVoted: false
+    };
+    document.getElementById("auth").style.display = "none";
+    document.getElementById("profile").style.display = "block";
+    document.getElementById("profileName").innerText = "Welcome, " + user.name;
+    updateKeys();
+}
+
+function vote(){
+    if(!user) return alert("Login qilishingiz kerak!");
+    if(user.hasVoted) {
+        alert("Siz allaqachon ovoz berdingiz!");
+        return;
+    }
+    // Ovoz berish (simulyatsiya)
+    alert("Ovoz berildi! Sizga 1 Vote Key berildi.");
+    user.voteKeys += 1;
+    user.hasVoted = true;
+    updateKeys();
+}
+
+function updateKeys(){
+    document.getElementById("voteKeys").innerText = user.voteKeys;
+}
+</script>
+  
 /* HERO */
 .hero{
 height:100vh;
@@ -332,3 +384,4 @@ function updateKeys(){
     document.getElementById("voteKeys").innerText = user.voteKeys;
 }
 </script>
+
