@@ -8,138 +8,167 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
-    font-family:'Orbitron',sans-serif;
-    background:#050507;
-    color:white;
-    overflow-x:hidden;
-    scroll-behavior:smooth;
+  font-family:'Orbitron',sans-serif;
+  background:#050507;
+  color:white;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
 }
 
-/* Animated background */
+/* Animated Neon Background */
 body::before{
-    content:"";
-    position:fixed;
-    width:200%;
-    height:200%;
-    background:radial-gradient(circle,rgba(255,0,0,0.15) 1%,transparent 1%);
-    background-size:50px 50px;
-    animation:move 25s linear infinite;
-    z-index:-1;
+  content:"";
+  position:fixed;
+  width:200%;
+  height:200%;
+  background:radial-gradient(circle,rgba(0,255,255,0.1) 1%,transparent 1%);
+  background-size:50px 50px;
+  animation:move 30s linear infinite;
+  z-index:-1;
 }
 @keyframes move{
-    from{transform:translate(0,0);}
-    to{transform:translate(-200px,-200px);}
+  from{transform:translate(0,0);}
+  to{transform:translate(-250px,-250px);}
 }
 
-/* HERO */
+/* HERO SECTION */
 .hero{
-    height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    background:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.9)),
-               url('images/spawn.png') center/cover no-repeat;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
+             url('https://cdn.pixabay.com/photo/2017/08/30/01/05/minecraft-2693809_1280.jpg') center/cover no-repeat;
 }
 .hero h1{
-    font-size:70px;
-    color:#ff2e2e;
-    animation:glow 2s infinite alternate;
+  font-size:75px;
+  background:linear-gradient(45deg,#0ff,#f0f,#0ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:glowText 2s infinite alternate;
 }
-@keyframes glow{
-    from{text-shadow:0 0 15px red;}
-    to{text-shadow:0 0 45px #ff0000;}
+@keyframes glowText{
+  0%{text-shadow:0 0 10px #0ff,0 0 20px #f0f;}
+  50%{text-shadow:0 0 20px #0ff,0 0 40px #f0f;}
+  100%{text-shadow:0 0 30px #0ff,0 0 60px #f0f;}
 }
 
-/* Glass panel */
+/* Glass Panel */
 .glass{
-    margin-top:30px;
-    padding:25px 60px;
-    background:rgba(255,255,255,0.05);
-    backdrop-filter:blur(15px);
-    border-radius:20px;
-    border:1px solid rgba(255,0,0,0.4);
-    box-shadow:0 0 40px rgba(255,0,0,0.4);
-    text-align:center;
+  margin-top:30px;
+  padding:30px 60px;
+  background:rgba(0,0,0,0.25);
+  backdrop-filter:blur(20px);
+  border-radius:25px;
+  border:1px solid rgba(0,255,255,0.5);
+  box-shadow:0 0 50px #0ff;
+  text-align:center;
+  animation:fadeIn 1.5s ease forwards;
+}
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
 }
 
+/* Buttons */
 .btn{
-    margin-top:15px;
-    padding:14px 40px;
-    border:none;
-    border-radius:50px;
-    background:#ff1e1e;
-    color:white;
-    cursor:pointer;
-    transition:0.3s;
-    font-weight:bold;
+  margin-top:15px;
+  padding:14px 45px;
+  border:none;
+  border-radius:50px;
+  background:#0ff;
+  color:#050507;
+  cursor:pointer;
+  transition:0.3s;
+  font-weight:bold;
+  box-shadow:0 0 15px #0ff,0 0 30px #f0f;
 }
 .btn:hover{
-    transform:scale(1.1);
-    background:#b30000;
+  transform:scale(1.1);
+  box-shadow:0 0 25px #0ff,0 0 50px #f0f;
+  background:#f0f;
+  color:white;
 }
 
 /* Sections */
 .section{
-    padding:120px 10%;
-    text-align:center;
+  padding:120px 10%;
+  text-align:center;
 }
-
 .cards{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:40px;
-    margin-top:60px;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:40px;
+  margin-top:60px;
+  opacity:0;
+  animation:sectionFade 1s forwards;
+  animation-delay:0.5s;
 }
-
+@keyframes sectionFade{
+  to{opacity:1;}
+}
 .card{
-    width:280px;
-    padding:35px;
-    border-radius:20px;
-    background:rgba(255,255,255,0.05);
-    backdrop-filter:blur(15px);
-    border:1px solid rgba(255,0,0,0.3);
-    transition:0.4s;
+  width:280px;
+  padding:35px;
+  border-radius:25px;
+  background:rgba(0,0,0,0.3);
+  backdrop-filter:blur(15px);
+  border:1px solid rgba(0,255,255,0.4);
+  transition:0.4s;
+  text-align:center;
 }
 .card:hover{
-    transform:translateY(-15px);
-    box-shadow:0 0 40px red;
+  transform:translateY(-15px);
+  box-shadow:0 0 50px #0ff,0 0 70px #f0f;
 }
-
+.card h3{
+  background:linear-gradient(45deg,#0ff,#f0f,#0ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  font-size:24px;
+  margin-bottom:10px;
+}
+.card p{
+  font-size:16px;
+  line-height:1.5;
+}
 .price{
-    font-size:20px;
-    color:#ff2e2e;
-    margin:15px 0;
+  font-size:20px;
+  color:#0ff;
+  margin:15px 0;
 }
 
 /* Floating Telegram */
 .telegram-float{
-    position:fixed;
-    bottom:30px;
-    right:30px;
-    background:#ff1e1e;
-    padding:16px 22px;
-    border-radius:50px;
-    box-shadow:0 0 30px red;
-    text-decoration:none;
-    color:white;
-    font-weight:bold;
-    animation:pulse 2s infinite;
+  position:fixed;
+  bottom:30px;
+  right:30px;
+  background:#0ff;
+  padding:16px 22px;
+  border-radius:50px;
+  box-shadow:0 0 40px #0ff,0 0 60px #f0f;
+  text-decoration:none;
+  color:#050507;
+  font-weight:bold;
+  animation:pulse 2s infinite;
 }
 @keyframes pulse{
-    0%{box-shadow:0 0 10px red;}
-    50%{box-shadow:0 0 40px red;}
-    100%{box-shadow:0 0 10px red;}
+  0%{box-shadow:0 0 10px #0ff,0 0 20px #f0f;}
+  50%{box-shadow:0 0 40px #0ff,0 0 60px #f0f;}
+  100%{box-shadow:0 0 10px #0ff,0 0 20px #f0f;}
 }
 
+/* Footer */
 footer{
-    padding:40px;
-    background:black;
-    text-align:center;
-    color:gray;
-    margin-top:100px;
+  padding:40px;
+  background:black;
+  text-align:center;
+  color:#0ff;
+  margin-top:100px;
+  text-shadow:0 0 10px #0ff;
 }
 </style>
 </head>
@@ -161,68 +190,37 @@ footer{
 <div class="cards">
 <div class="card">
 <h3>💀 Lifesteal</h3>
-<p>Har bir kill = +1 Heart<br>Death = -1 Heart</p>
+<p>Kill = +1 Heart | Death = -1 Heart</p>
 </div>
 <div class="card">
 <h3>🏆 PvP Arena</h3>
-<p>Raqobatbardosh Rank tizimi bilan</p>
+<p>Competitive Rank System | Tournaments</p>
 </div>
 <div class="card">
 <h3>🎁 Weekly Events</h3>
-<p>Har hafta maxsus mukofotlar</p>
+<p>Exclusive rewards & seasonal surprises</p>
 </div>
 <div class="card">
 <h3>🔥 Survival Fun</h3>
-<p>LifeSteal mod bilan to‘liq tajriba</p>
+<p>LifeSteal mod full experience</p>
 </div>
 <div class="card">
 <h3>💎 Special Items</h3>
-<p>Exclusive swords va armors</p>
+<p>Unique swords, armor & legendary loot</p>
 </div>
 </div>
 </div>
 
-<!-- DONATE SECTION (FUN VERSION) -->
+<!-- PLAYER RANKS SECTION -->
 <div class="section">
 <h2>💰 Player Ranks</h2>
 <div class="cards">
-
-  <div class="card">
-    <h3>Knight</h3>
-    <div class="price">🎖 Level Up Fun</div>
-    <button class="btn" onclick="rankInfo('Knight')">Info</button>
-  </div>
-
-  <div class="card">
-    <h3>Lord</h3>
-    <div class="price">🎖 Special Perks</div>
-    <button class="btn" onclick="rankInfo('Lord')">Info</button>
-  </div>
-
-  <div class="card">
-    <h3>Paladin</h3>
-    <div class="price">🎖 Extra Hearts</div>
-    <button class="btn" onclick="rankInfo('Paladin')">Info</button>
-  </div>
-
-  <div class="card">
-    <h3>Duke</h3>
-    <div class="price">🎖 Unique Armor</div>
-    <button class="btn" onclick="rankInfo('Duke')">Info</button>
-  </div>
-
-  <div class="card">
-    <h3>King</h3>
-    <div class="price">🎖 Legendary Status</div>
-    <button class="btn" onclick="rankInfo('King')">Info</button>
-  </div>
-
-  <div class="card">
-    <h3>Media</h3>
-    <div class="price">🎥 Youtube & Streams</div>
-    <button class="btn" onclick="rankInfo('Media')">Info</button>
-  </div>
-
+<div class="card"><h3>Knight</h3><div class="price">🎖 Level Up Fun</div><button class="btn" onclick="rankInfo('Knight')">Info</button></div>
+<div class="card"><h3>Lord</h3><div class="price">🎖 Special Perks</div><button class="btn" onclick="rankInfo('Lord')">Info</button></div>
+<div class="card"><h3>Paladin</h3><div class="price">🎖 Extra Hearts</div><button class="btn" onclick="rankInfo('Paladin')">Info</button></div>
+<div class="card"><h3>Duke</h3><div class="price">🎖 Unique Armor</div><button class="btn" onclick="rankInfo('Duke')">Info</button></div>
+<div class="card"><h3>King</h3><div class="price">🎖 Legendary Status</div><button class="btn" onclick="rankInfo('King')">Info</button></div>
+<div class="card"><h3>Media</h3><div class="price">🎥 Youtube & Streams</div><button class="btn" onclick="rankInfo('Media')">Info</button></div>
 </div>
 </div>
 
@@ -235,19 +233,17 @@ footer{
 
 <script>
 function copyIP(){
-    navigator.clipboard.writeText("192.168.1.13");
-    alert("IP Copied!");
+  navigator.clipboard.writeText("192.168.1.13");
+  alert("IP Copied!");
 }
 
-// Player online simulation for local server
+// Player online simulation
 document.getElementById("players").innerText = Math.floor(Math.random()*10 + 1) + " Players";
 
-// Rank info popup
+// Rank info
 function rankInfo(rank){
-    alert(rank + " rank gives you special perks in Lonex Lifesteal!\nCheck server for full features.");
+  alert(rank + " rank gives special perks!\nCheck server for full features!");
 }
 </script>
-
 </body>
 </html>
-
