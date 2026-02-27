@@ -1,294 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lonex Lifesteal Network</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{
-  font-family:'Orbitron',sans-serif;
-  background:#050507;
-  color:white;
-  overflow-x:hidden;
-  scroll-behavior:smooth;
-}
-
-/* Animated Neon Background */
-body::before{
-  content:"";
-  position:fixed;
-  width:200%;
-  height:200%;
-  background:radial-gradient(circle,rgba(0,255,255,0.1) 1%,transparent 1%);
-  background-size:50px 50px;
-  animation:move 30s linear infinite;
-  z-index:-1;
-}
-@keyframes move{
-  from{transform:translate(0,0);}
-  to{transform:translate(-250px,-250px);}
-}
-
-/* HERO SECTION */
-.hero{
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
-             url('https://cdn.pixabay.com/photo/2017/08/30/01/05/minecraft-2693809_1280.jpg') center/cover no-repeat;
-}
-.hero h1{
-  font-size:75px;
-  background:linear-gradient(45deg,#0ff,#f0f,#0ff);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  animation:glowText 2s infinite alternate;
-}
-@keyframes glowText{
-  0%{text-shadow:0 0 10px #0ff,0 0 20px #f0f;}
-  50%{text-shadow:0 0 20px #0ff,0 0 40px #f0f;}
-  100%{text-shadow:0 0 30px #0ff,0 0 60px #f0f;}
-}
-
-/* Glass Panel */
-.glass{
-  margin-top:30px;
-  padding:30px 60px;
-  background:rgba(0,0,0,0.25);
-  backdrop-filter:blur(20px);
-  border-radius:25px;
-  border:1px solid rgba(0,255,255,0.5);
-  box-shadow:0 0 50px #0ff;
-  text-align:center;
-  animation:fadeIn 1.5s ease forwards;
-}
-@keyframes fadeIn{
-  from{opacity:0; transform:translateY(20px);}
-  to{opacity:1; transform:translateY(0);}
-}
-
-/* Buttons */
-.btn{
-  margin-top:15px;
-  padding:14px 45px;
-  border:none;
-  border-radius:50px;
-  background:#0ff;
-  color:#050507;
-  cursor:pointer;
-  transition:0.3s;
-  font-weight:bold;
-  box-shadow:0 0 15px #0ff,0 0 30px #f0f;
-}
-.btn:hover{
-  transform:scale(1.1);
-  box-shadow:0 0 25px #0ff,0 0 50px #f0f;
-  background:#f0f;
-  color:white;
-}
-
-/* Sections */
-.section{
-  padding:120px 10%;
-  text-align:center;
-}
-.cards{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:40px;
-  margin-top:60px;
-  opacity:0;
-  animation:sectionFade 1s forwards;
-  animation-delay:0.5s;
-}
-@keyframes sectionFade{
-  to{opacity:1;}
-}
-.card{
-  width:280px;
-  padding:35px;
-  border-radius:25px;
-  background:rgba(0,0,0,0.3);
-  backdrop-filter:blur(15px);
-  border:1px solid rgba(0,255,255,0.4);
-  transition:0.4s;
-  text-align:center;
-}
-.card:hover{
-  transform:translateY(-15px);
-  box-shadow:0 0 50px #0ff,0 0 70px #f0f;
-}
-.card h3{
-  background:linear-gradient(45deg,#0ff,#f0f,#0ff);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  font-size:24px;
-  margin-bottom:10px;
-}
-.card p{
-  font-size:16px;
-  line-height:1.5;
-}
-.price{
-  font-size:20px;
-  color:#0ff;
-  margin:15px 0;
-}
-
-/* UPDATES / BUGS / REPORTS */
-.update-card{
-  width:300px;
-  padding:25px;
-  margin:15px;
-  border-radius:25px;
-  background:rgba(0,0,0,0.2);
-  border:1px solid rgba(0,255,255,0.4);
-  box-shadow:0 0 40px #0ff;
-  transition:0.3s;
-}
-.update-card:hover{
-  transform:translateY(-10px);
-  box-shadow:0 0 50px #0ff,0 0 70px #f0f;
-}
-.update-card h4{
-  background:linear-gradient(45deg,#0ff,#f0f,#0ff);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  margin-bottom:10px;
-}
-.update-card p{
-  font-size:15px;
-  line-height:1.4;
-}
-
-/* Floating Telegram */
-.telegram-float{
-  position:fixed;
-  bottom:30px;
-  right:30px;
-  background:#0ff;
-  padding:16px 22px;
-  border-radius:50px;
-  box-shadow:0 0 40px #0ff,0 0 60px #f0f;
-  text-decoration:none;
-  color:#050507;
-  font-weight:bold;
-  animation:pulse 2s infinite;
-}
-@keyframes pulse{
-  0%{box-shadow:0 0 10px #0ff,0 0 20px #f0f;}
-  50%{box-shadow:0 0 40px #0ff,0 0 60px #f0f;}
-  100%{box-shadow:0 0 10px #0ff,0 0 20px #f0f;}
-}
-
-/* Footer */
-footer{
-  padding:40px;
-  background:black;
-  text-align:center;
-  color:#0ff;
-  margin-top:100px;
-  text-shadow:0 0 10px #0ff;
-}
+body{font-family:sans-serif;background:#f5f5f5;color:#222;overflow-x:hidden;}
+.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:#ddd url('https://cdn.pixabay.com/photo/2017/08/30/01/05/minecraft-2693809_1280.jpg') center/cover no-repeat;}
+.hero h1{font-size:60px;color:#333;}
+.glass{margin-top:20px;padding:30px 50px;background:rgba(255,255,255,0.8);backdrop-filter:blur(10px);border-radius:20px;border:1px solid #ccc;text-align:center;}
+.btn{margin-top:15px;padding:12px 35px;border:none;border-radius:20px;background:#555;color:white;cursor:pointer;transition:0.3s;}
+.btn:hover{background:#333;}
+.section{padding:100px 10%;text-align:center;}
+.cards{display:flex;flex-wrap:wrap;justify-content:center;gap:30px;margin-top:50px;}
+.card{width:280px;padding:25px;border-radius:20px;background:#fff;border:1px solid #ccc;transition:0.3s;text-align:center;}
+.card:hover{transform:translateY(-10px);box-shadow:0 0 20px rgba(0,0,0,0.2);}
+.card h3{font-size:22px;margin-bottom:10px;}
+.card p{font-size:15px;line-height:1.5;}
+.price{font-size:18px;color:#555;margin:10px 0;}
+.update-card{width:300px;padding:20px;margin:10px;border-radius:20px;background:#eee;border:1px solid #ccc;}
+.update-card h4{margin-bottom:8px;}
+.update-card p{font-size:14px;line-height:1.4;}
+.telegram-float{position:fixed;bottom:30px;right:30px;background:#555;padding:12px 18px;border-radius:50px;text-decoration:none;color:white;font-weight:bold;}
+footer{padding:40px;background:#ccc;text-align:center;color:#333;}
+input[type=text]{padding:10px;border-radius:10px;border:1px solid #aaa;width:200px;}
+pre{background:#eee;padding:15px;border-radius:10px;margin-top:10px;white-space:pre-wrap;}
 </style>
 </head>
 <body>
 
 <!-- HERO SECTION -->
 <div class="hero">
-<h1>🔥 LONEX LIFESTEAL 🔥</h1>
+<h1>🔥 Lonex Lifesteal 🔥</h1>
 <div class="glass">
 <h2 id="ip">192.168.1.13</h2>
-<p>Online Players: <span id="players">Checking...</span></p>
-<button class="btn" onclick="copyIP()">Copy IP</button>
+<p>Online o‘yinchilar: <span id="players">Tekshirilmoqda...</span></p>
+<button class="btn" onclick="copyIP()">IPni nusxalash</button>
 </div>
 </div>
 
-<!-- FEATURES SECTION -->
+<!-- Xususiyatlar -->
 <div class="section">
-<h2>⚔ Server Features</h2>
+<h2>⚔ Server Xususiyatlari</h2>
 <div class="cards">
-<div class="card">
-<h3>💀 Lifesteal</h3>
-<p>Kill = +1 Heart | Death = -1 Heart</p>
-</div>
-<div class="card">
-<h3>🏆 PvP Arena</h3>
-<p>Competitive Rank System | Tournaments</p>
-</div>
-<div class="card">
-<h3>🎁 Weekly Events</h3>
-<p>Exclusive rewards & seasonal surprises</p>
-</div>
-<div class="card">
-<h3>🔥 Survival Fun</h3>
-<p>LifeSteal mod full experience</p>
-</div>
-<div class="card">
-<h3>💎 Special Items</h3>
-<p>Unique swords, armor & legendary loot</p>
-</div>
+<div class="card"><h3>💀 Lifesteal</h3><p>O‘ldirsang +1 Yurak | O‘lursang -1 Yurak</p></div>
+<div class="card"><h3>🏆 PvP Arena</h3><p>Raqobat va turnirlar</p></div>
+<div class="card"><h3>🎁 Haftalik voqealar</h3><p>Maxsus sovg‘alar va mukofotlar</p></div>
+<div class="card"><h3>🔥 Survival</h3><p>To‘liq LifeSteal tajribasi</p></div>
+<div class="card"><h3>💎 Maxsus buyumlar</h3><p>Unikal qilichlar, zirhlar & loot</p></div>
 </div>
 </div>
 
-<!-- PLAYER RANKS SECTION -->
+<!-- Ranks -->
 <div class="section">
-<h2>💰 Player Ranks</h2>
+<h2>💰 O‘yinchi Ranks</h2>
 <div class="cards">
-<div class="card"><h3>Knight</h3><div class="price">🎖 Level Up Fun</div><button class="btn" onclick="rankInfo('Knight')">Info</button></div>
-<div class="card"><h3>Lord</h3><div class="price">🎖 Special Perks</div><button class="btn" onclick="rankInfo('Lord')">Info</button></div>
-<div class="card"><h3>Paladin</h3><div class="price">🎖 Extra Hearts</div><button class="btn" onclick="rankInfo('Paladin')">Info</button></div>
-<div class="card"><h3>Duke</h3><div class="price">🎖 Unique Armor</div><button class="btn" onclick="rankInfo('Duke')">Info</button></div>
-<div class="card"><h3>King</h3><div class="price">🎖 Legendary Status</div><button class="btn" onclick="rankInfo('King')">Info</button></div>
-<div class="card"><h3>Media</h3><div class="price">🎥 Youtube & Streams</div><button class="btn" onclick="rankInfo('Media')">Info</button></div>
+<div class="card"><h3>Knight</h3><div class="price">Fun darajasi</div><button class="btn" onclick="rankInfo('Knight')">Ma’lumot</button></div>
+<div class="card"><h3>Lord</h3><div class="price">Maxsus imtiyozlar</div><button class="btn" onclick="rankInfo('Lord')">Ma’lumot</button></div>
+<div class="card"><h3>Paladin</h3><div class="price">Qo‘shimcha yuraklar</div><button class="btn" onclick="rankInfo('Paladin')">Ma’lumot</button></div>
+<div class="card"><h3>Duke</h3><div class="price">Unikal zirh</div><button class="btn" onclick="rankInfo('Duke')">Ma’lumot</button></div>
+<div class="card"><h3>King</h3><div class="price">Afsonaviy status</div><button class="btn" onclick="rankInfo('King')">Ma’lumot</button></div>
+<div class="card"><h3>Media</h3><div class="price">YouTube & Stream</div><button class="btn" onclick="rankInfo('Media')">Ma’lumot</button></div>
 </div>
 </div>
 
-<!-- UPDATES / BUGS / REPORTS SECTION -->
+<!-- Updates / Bugs -->
 <div class="section">
-<h2>🛠 Updates / Bugs / Reports</h2>
+<h2>🛠 Yangilanishlar / Xatoliklar</h2>
 <div class="cards">
-<div class="update-card">
-<h4>Update 1.2.0</h4>
-<p>New PvP arena added, Lifesteal hearts balanced, weekly events improved.</p>
-</div>
-<div class="update-card">
-<h4>Bug Fixes</h4>
-<p>Fixed rare server crash on login & fixed Lifesteal miscount bug.</p>
-</div>
-<div class="update-card">
-<h4>Player Reports</h4>
-<p>Reported exploit in arena patched. Please report new issues via Telegram bot.</p>
-</div>
+<div class="update-card"><h4>Yangilanish 1.2.0</h4><p>Yangi PvP arena qo‘shildi, Lifesteal yuraklar balanslandi, haftalik voqealar yaxshilandi.</p></div>
+<div class="update-card"><h4>Xatoliklar tuzatildi</h4><p>Login paytida crash tuzatildi va Lifesteal hisob xatolari bartaraf qilindi.</p></div>
+<div class="update-card"><h4>O‘yinchi xabarlar</h4><p>Arena exploit patchlandi. Yangi muammolarni Telegram bot orqali xabar bering.</p></div>
 </div>
 </div>
 
-<!-- TELEGRAM FLOAT -->
+<!-- Admin Panel (Simulyatsiya) -->
+<div class="section">
+<h2>💻 Admin Panel</h2>
+<input type="text" id="cmd" placeholder="Buyruq yozing...">
+<button class="btn" onclick="sendCmd()">Yuborish</button>
+<pre id="cmd-result"></pre>
+</div>
+
+<!-- Telegram -->
 <a href="https://t.me/Lonex_lifesteal_bot" class="telegram-float">Telegram</a>
 
-<footer>
-© 2026 Lonex Lifesteal Network
-</footer>
+<footer>© 2026 Lonex Lifesteal Network</footer>
 
 <script>
+// IP nusxalash
 function copyIP(){
   navigator.clipboard.writeText("192.168.1.13");
-  alert("IP Copied!");
+  alert("IP nusxalandi!");
 }
-
-// Player online simulation
-document.getElementById("players").innerText = Math.floor(Math.random()*10 + 1) + " Players";
 
 // Rank info
 function rankInfo(rank){
-  alert(rank + " rank gives special perks!\nCheck server for full features!");
+  alert(rank + " rank maxsus imtiyozlar beradi!\nServerda tekshiring.");
+}
+
+// Online o‘yinchilar simulyatsiyasi
+function updatePlayers(){
+  let count = Math.floor(Math.random()*10+1);
+  document.getElementById("players").innerText = count + " o‘yinchi";
+}
+updatePlayers();
+setInterval(updatePlayers,10000);
+
+// Admin buyruqlar simulyatsiyasi
+function sendCmd(){
+  let cmd = document.getElementById("cmd").value;
+  if(cmd.trim() === "") return alert("Iltimos buyruq kiriting!");
+  document.getElementById("cmd-result").innerText = "Buyruq yuborildi: " + cmd;
+  document.getElementById("cmd").value = "";
 }
 </script>
+
 </body>
 </html>
+
