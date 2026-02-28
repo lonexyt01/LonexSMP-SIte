@@ -70,35 +70,29 @@ footer{background:#0c1224;padding:25px;text-align:center;margin-top:40px;border-
   </div>
 </div>
 
-<!-- Store Section -->
 <div class="section">
   <h2>Sotuv Do'koni</h2>
   <div class="store-grid">
-
     <div class="store-card">
       <h3>SMP Shards</h3>
-      <p>100 Shards — 5$</p>
-      <button onclick="buyItem('SMP Shards',100)">Sotib olish</button>
+      <p>500 Shards — 15 000</p>
+      <button onclick="buyItem('SMP Shards',500,15000)">Sotib olish</button>
     </div>
-
     <div class="store-card">
       <h3>SMP Shards</h3>
-      <p>500 Shards — 20$</p>
-      <button onclick="buyItem('SMP Shards',500)">Sotib olish</button>
+      <p>1000 Shards — 25 000</p>
+      <button onclick="buyItem('SMP Shards',1000,25000)">Sotib olish</button>
     </div>
-
     <div class="store-card">
       <h3>Lifesteal Coins</h3>
-      <p>100 Coins — 5$</p>
-      <button onclick="buyItem('Lifesteal Coins',100)">Sotib olish</button>
+      <p>100 Coins — 10 000</p>
+      <button onclick="buyItem('Lifesteal Coins',100,10000)">Sotib olish</button>
     </div>
-
     <div class="store-card">
       <h3>Lifesteal Coins</h3>
-      <p>500 Coins — 20$</p>
-      <button onclick="buyItem('Lifesteal Coins',500)">Sotib olish</button>
+      <p>500 Coins — 45 000</p>
+      <button onclick="buyItem('Lifesteal Coins',500,45000)">Sotib olish</button>
     </div>
-
   </div>
 </div>
 
@@ -132,20 +126,18 @@ loadOnline();
 setInterval(loadOnline,15000);
 
 function openTelegram(){
-  if(confirm("Botga kirasizmi?")){
-    window.open("https://t.me/Lonex_LifeSteal_bot","_blank");
-  }
+  window.open("https://t.me/Lonex_lifesteal_bot","_blank");
 }
 
-function buyItem(type, amount){
-  if(confirm(`Siz ${amount} ${type} sotib olmoqchimisiz?`)){
+function buyItem(type, amount, price){
+  if(confirm(`Siz ${amount} ${type} sotib olmoqchimisiz? Narxi: ${price}`)){
     alert(`${amount} ${type} muvaffaqiyatli sotib olindi!`);
-    // Payment integratsiyasini keyin qo'shish mumkin
+    // Telegram botga xabar yuborish
+    let botLink = `https://t.me/Lonex_lifesteal_bot?start=buy_${type}_${amount}_${price}`;
+    window.open(botLink,'_blank');
   }
 }
 </script>
 
 </body>
 </html>
-
-
