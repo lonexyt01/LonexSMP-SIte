@@ -43,13 +43,11 @@ footer{text-align:center;padding:15px;margin-top:20px;border-top:1px solid #0072
 
 <footer>LonexNetwork – Barcha huquqlar himoyalangan © 2026</footer>
 
-<!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
 
 <script>
-// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyBNlrNjMr8ACItG2SQeROi2j1YffyJPcKY",
   authDomain: "lonexnetworkchat.firebaseapp.com",
@@ -66,7 +64,7 @@ const storage = firebase.storage();
 
 let username = "";
 
-// Username o‘rnatish va localStorage bilan saqlash
+// Username saqlash
 window.onload = function() {
   const saved = localStorage.getItem("lonexUsername");
   if(saved){
@@ -75,7 +73,7 @@ window.onload = function() {
   }
 }
 
-// Enter bosilganda xabar yuborish
+// Enter bilan yuborish
 document.getElementById("message").addEventListener("keydown", function(e){
   if(e.key === "Enter") sendMessage();
 });
@@ -111,7 +109,7 @@ function setUsername(){
   userRef.onDisconnect().remove();
 }
 
-// Xabar yuborish
+// Yuborish funksiyasi – MATN + RASM birga ishlaydi
 async function sendMessage(){
   const msgInput = document.getElementById("message");
   const file = imageInput.files[0];
@@ -121,7 +119,6 @@ async function sendMessage(){
     const fileName = Date.now() + '_' + file.name.replace(/\s+/g,'_');
     const storageRef = storage.ref('chat-images/' + fileName);
     try {
-      // Yuklash
       await storageRef.put(file);
       imageUrl = await storageRef.getDownloadURL();
     } catch(err){
@@ -133,9 +130,9 @@ async function sendMessage(){
   }
 
   const text = msgInput.value.trim();
+
   if(text === "" && imageUrl === "") return;
 
-  // Firebase Database ga push
   db.ref('messages').push({
     username: username,
     message: text,
