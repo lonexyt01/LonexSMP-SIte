@@ -81,15 +81,20 @@ function sendMessage(){
   msgInput.value = "";
 }
 
-// Real-time chat
+// Global chat real-time
 const chatDiv = document.getElementById("chat");
-db.ref('messages').on('child_added', snapshot => {
-  const data = snapshot.val();
-  const msgDiv = document.createElement("div");
-  msgDiv.className = "message";
-  const time = new Date(data.timestamp);
-  msgDiv.innerHTML = `<span class="username">${data.username}:</span> ${data.message} <span class='timestamp'>${time.getHours()}:${time.getMinutes().toString().padStart(2,'0')}</span>`;
-  chatDiv.appendChild(msgDiv);
+
+// Oldingi xabarlarni olish va realtime yangilash
+db.ref('messages').on('value', snapshot => {
+  chatDiv.innerHTML = ""; // Har safar qayta chizish
+  snapshot.forEach(child => {
+    const data = child.val();
+    const msgDiv = document.createElement("div");
+    msgDiv.className = "message";
+    const time = new Date(data.timestamp);
+    msgDiv.innerHTML = `<span class="username">${data.username}:</span> ${data.message} <span class='timestamp'>${time.getHours()}:${time.getMinutes().toString().padStart(2,'0')}</span>`;
+    chatDiv.appendChild(msgDiv);
+  });
   chatDiv.scrollTop = chatDiv.scrollHeight;
 });
 
