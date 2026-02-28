@@ -3,120 +3,161 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lonex Lifesteal Network</title>
+<title>LonexNetwork</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:sans-serif;background:#f5f5f5;color:#222;overflow-x:hidden;}
-.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:#ddd url('https://cdn.pixabay.com/photo/2017/08/30/01/05/minecraft-2693809_1280.jpg') center/cover no-repeat;}
-.hero h1{font-size:60px;color:#333;}
-.glass{margin-top:20px;padding:30px 50px;background:rgba(255,255,255,0.8);backdrop-filter:blur(10px);border-radius:20px;border:1px solid #ccc;text-align:center;}
-.btn{margin-top:15px;padding:12px 35px;border:none;border-radius:20px;background:#555;color:white;cursor:pointer;transition:0.3s;}
-.btn:hover{background:#333;}
-.section{padding:100px 10%;text-align:center;}
-.cards{display:flex;flex-wrap:wrap;justify-content:center;gap:30px;margin-top:50px;}
-.card{width:280px;padding:25px;border-radius:20px;background:#fff;border:1px solid #ccc;transition:0.3s;text-align:center;}
-.card:hover{transform:translateY(-10px);box-shadow:0 0 20px rgba(0,0,0,0.2);}
-.card h3{font-size:22px;margin-bottom:10px;}
-.card p{font-size:15px;line-height:1.5;}
-.price{font-size:18px;color:#555;margin:10px 0;}
-.update-card{width:300px;padding:20px;margin:10px;border-radius:20px;background:#eee;border:1px solid #ccc;}
-.update-card h4{margin-bottom:8px;}
-.update-card p{font-size:14px;line-height:1.4;}
-.telegram-float{position:fixed;bottom:30px;right:30px;background:#555;padding:12px 18px;border-radius:50px;text-decoration:none;color:white;font-weight:bold;}
-footer{padding:40px;background:#ccc;text-align:center;color:#333;}
-input[type=text]{padding:10px;border-radius:10px;border:1px solid #aaa;width:200px;}
-pre{background:#eee;padding:15px;border-radius:10px;margin-top:10px;white-space:pre-wrap;}
+body{
+margin:0;
+font-family:'Orbitron',sans-serif;
+background:#050816;
+color:white;
+}
+
+header{
+padding:40px;
+text-align:center;
+background:linear-gradient(90deg,#00c6ff,#0072ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+font-size:48px;
+font-weight:700;
+}
+
+.section{
+padding:60px 20px;
+text-align:center;
+}
+
+.card{
+background:#0c1224;
+margin:20px auto;
+padding:30px;
+border-radius:15px;
+max-width:800px;
+box-shadow:0 0 20px #0072ff55;
+}
+
+button{
+background:linear-gradient(90deg,#00c6ff,#0072ff);
+border:none;
+padding:12px 25px;
+border-radius:8px;
+color:white;
+cursor:pointer;
+font-weight:bold;
+}
+
+.online-box{
+font-size:22px;
+margin-top:10px;
+color:#00c6ff;
+}
+
+input{
+padding:10px;
+border-radius:6px;
+border:none;
+margin:5px;
+}
+
+footer{
+padding:20px;
+text-align:center;
+background:#0c1224;
+}
 </style>
 </head>
+
 <body>
 
-<!-- HERO SECTION -->
-<div class="hero">
-<h1>🔥 Lonex Lifesteal 🔥</h1>
-<div class="glass">
-<h2 id="ip">192.168.1.13</h2>
-<p>Online o‘yinchilar: <span id="players">Tekshirilmoqda...</span></p>
-<button class="btn" onclick="copyIP()">IPni nusxalash</button>
-</div>
-</div>
+<header>LonexNetwork</header>
 
-<!-- Xususiyatlar -->
 <div class="section">
-<h2>⚔ Server Xususiyatlari</h2>
-<div class="cards">
-<div class="card"><h3>💀 Lifesteal</h3><p>O‘ldirsang +1 Yurak | O‘lursang -1 Yurak</p></div>
-<div class="card"><h3>🏆 PvP Arena</h3><p>Raqobat va turnirlar</p></div>
-<div class="card"><h3>🎁 Haftalik voqealar</h3><p>Maxsus sovg‘alar va mukofotlar</p></div>
-<div class="card"><h3>🔥 Survival</h3><p>To‘liq LifeSteal tajribasi</p></div>
-<div class="card"><h3>💎 Maxsus buyumlar</h3><p>Unikal qilichlar, zirhlar & loot</p></div>
+<div class="card">
+<h2>SMP Online</h2>
+<div class="online-box" id="smpOnline">Yuklanmoqda...</div>
 </div>
 </div>
 
-<!-- Ranks -->
 <div class="section">
-<h2>💰 O‘yinchi Ranks</h2>
-<div class="cards">
-<div class="card"><h3>Knight</h3><div class="price">Fun darajasi</div><button class="btn" onclick="rankInfo('Knight')">Ma’lumot</button></div>
-<div class="card"><h3>Lord</h3><div class="price">Maxsus imtiyozlar</div><button class="btn" onclick="rankInfo('Lord')">Ma’lumot</button></div>
-<div class="card"><h3>Paladin</h3><div class="price">Qo‘shimcha yuraklar</div><button class="btn" onclick="rankInfo('Paladin')">Ma’lumot</button></div>
-<div class="card"><h3>Duke</h3><div class="price">Unikal zirh</div><button class="btn" onclick="rankInfo('Duke')">Ma’lumot</button></div>
-<div class="card"><h3>King</h3><div class="price">Afsonaviy status</div><button class="btn" onclick="rankInfo('King')">Ma’lumot</button></div>
-<div class="card"><h3>Media</h3><div class="price">YouTube & Stream</div><button class="btn" onclick="rankInfo('Media')">Ma’lumot</button></div>
+<div class="card">
+<h2>Updatelar</h2>
+<p>✔ Lifestealga Resourcepack qo'shildi</p>
+<p>✔ Sifat oshirildi</p>
+<p>✔ Jon sistemasi to'g'irlandi</p>
+<p>✔ Eventlar ishga tushirildi</p>
+<p>✔ ChatGames qo'shildi</p>
 </div>
 </div>
 
-<!-- Updates / Bugs -->
 <div class="section">
-<h2>🛠 Yangilanishlar / Xatoliklar</h2>
-<div class="cards">
-<div class="update-card"><h4>Yangilanish 1.2.0</h4><p>Yangi PvP arena qo‘shildi, Lifesteal yuraklar balanslandi, haftalik voqealar yaxshilandi.</p></div>
-<div class="update-card"><h4>Xatoliklar tuzatildi</h4><p>Login paytida crash tuzatildi va Lifesteal hisob xatolari bartaraf qilindi.</p></div>
-<div class="update-card"><h4>O‘yinchi xabarlar</h4><p>Arena exploit patchlandi. Yangi muammolarni Telegram bot orqali xabar bering.</p></div>
+<div class="card">
+<h2>Qoidalar</h2>
+<p>🚫 So'kinish — mute</p>
+<p>🚫 Server reklama — ban</p>
+<p>⚠ TPS tushirishga urinish — ogohlantirish</p>
+<p>⚠ Cheat ishlatish — permanent ban</p>
+<p>⚠ Adminlarga hurmatsizlik — jazolanadi</p>
+<p>⚠ Bug abuse — ban</p>
 </div>
 </div>
 
-<!-- Admin Panel (Simulyatsiya) -->
 <div class="section">
-<h2>💻 Admin Panel</h2>
-<input type="text" id="cmd" placeholder="Buyruq yozing...">
-<button class="btn" onclick="sendCmd()">Yuborish</button>
-<pre id="cmd-result"></pre>
+<div class="card">
+<h2>Lifesteal Ranklar</h2>
+<p>Knight — 8 000</p>
+<p>Lord — 15 000</p>
+<p>Paladin — 23 000</p>
+<p>Duke — 34 000</p>
+<p>King — 45 000</p>
+</div>
 </div>
 
-<!-- Telegram -->
-<a href="https://t.me/Lonex_lifesteal_bot" class="telegram-float">Telegram</a>
+<div class="section">
+<div class="card">
+<h2>SMP Rank</h2>
+<p>Faqat Media mavjud</p>
+<p>Qanday olish server ichida e'lon qilingan</p>
+</div>
+</div>
 
-<footer>© 2026 Lonex Lifesteal Network</footer>
+<div class="section">
+<div class="card">
+<h2>Shaxsiy Kabinet</h2>
+<input type="text" placeholder="Username">
+<input type="password" placeholder="Parol">
+<br><br>
+<button>Kirish</button>
+</div>
+</div>
+
+<div class="section">
+<div class="card">
+<h2>Admin Panel</h2>
+<p>Faqat Adminlar uchun</p>
+<input type="password" placeholder="Admin Parol">
+<br><br>
+<button>Kirish</button>
+</div>
+</div>
+
+<footer>
+© 2026 LonexNetwork | Barcha huquqlar himoyalangan
+</footer>
 
 <script>
-// IP nusxalash
-function copyIP(){
-  navigator.clipboard.writeText("192.168.1.13");
-  alert("IP nusxalandi!");
+async function getOnline(){
+try{
+let res = await fetch('/api/online');
+let data = await res.json();
+document.getElementById("smpOnline").innerText = data.smp + " O'yinchi Online";
+}catch{
+document.getElementById("smpOnline").innerText = "Server Offline";
 }
-
-// Rank info
-function rankInfo(rank){
-  alert(rank + " rank maxsus imtiyozlar beradi!\nServerda tekshiring.");
 }
-
-// Online o‘yinchilar simulyatsiyasi
-function updatePlayers(){
-  let count = Math.floor(Math.random()*10+1);
-  document.getElementById("players").innerText = count + " o‘yinchi";
-}
-updatePlayers();
-setInterval(updatePlayers,10000);
-
-// Admin buyruqlar simulyatsiyasi
-function sendCmd(){
-  let cmd = document.getElementById("cmd").value;
-  if(cmd.trim() === "") return alert("Iltimos buyruq kiriting!");
-  document.getElementById("cmd-result").innerText = "Buyruq yuborildi: " + cmd;
-  document.getElementById("cmd").value = "";
-}
+getOnline();
+setInterval(getOnline,10000);
 </script>
 
 </body>
 </html>
-
