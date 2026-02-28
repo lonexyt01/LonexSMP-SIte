@@ -3,141 +3,105 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LonexNetwork Store</title>
+<title>LonexNetwork Chat</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif;}
-body{background:radial-gradient(circle at top,#0a0f2c,#050816 60%);color:white;overflow-x:hidden;}
-body::before{content:"";position:fixed;width:200%;height:200%;background:radial-gradient(circle,#00c6ff33 10%,transparent 40%),radial-gradient(circle,#0072ff33 10%,transparent 40%);animation:moveBg 15s linear infinite;z-index:-1;}
-@keyframes moveBg{0%{transform:translate(0,0);}50%{transform:translate(-10%,-10%);}100%{transform:translate(0,0);}}
-header{padding:40px;text-align:center;font-size:55px;font-weight:700;background:linear-gradient(90deg,#00c6ff,#0072ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 25px #00c6ff88;}
-.section{padding:70px 20px;text-align:center;}
-.card{background:#0c1224;margin:25px auto;padding:35px;border-radius:20px;max-width:900px;box-shadow:0 0 30px #0072ff55;border:1px solid #0072ff44;transition:0.3s;}
-.card:hover{transform:scale(1.02);box-shadow:0 0 40px #00c6ff;}
-.online{font-size:26px;color:#00c6ff;margin-top:15px;}
-button{background:linear-gradient(90deg,#00c6ff,#0072ff);border:none;padding:14px 30px;border-radius:10px;color:white;cursor:pointer;font-weight:bold;margin-top:15px;transition:0.3s;}
-button:hover{transform:scale(1.1);box-shadow:0 0 20px #00c6ff;}
-footer{background:#0c1224;padding:25px;text-align:center;margin-top:40px;border-top:1px solid #0072ff44;}
-.store-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;}
-.store-card{flex:1 1 250px;background:#0c1224;padding:25px;border-radius:15px;border:1px solid #0072ff44;box-shadow:0 0 20px #0072ff55;transition:0.3s;}
-.store-card:hover{transform:scale(1.05);box-shadow:0 0 30px #00c6ff;}
-.store-card h3{margin-bottom:15px;color:#00c6ff;}
-.store-card p{margin-bottom:10px;}
+body{background:radial-gradient(circle at top,#0a0f2c,#050816 60%);color:white;}
+header{text-align:center;padding:30px;font-size:45px;background:linear-gradient(90deg,#00c6ff,#0072ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+#onlineCount{margin-top:5px;color:#00c6ff;font-weight:bold;}
+.chat-container{max-width:900px;margin:20px auto;background:#0c1224;padding:20px;border-radius:15px;height:500px;overflow-y:auto;border:1px solid #0072ff44;}
+.message{margin-bottom:10px;word-wrap:break-word;}
+.username{color:#00c6ff;font-weight:bold;margin-right:5px;}
+.timestamp{color:#0072ff;font-size:0.8em;margin-left:5px;}
+input,button{padding:10px;border-radius:8px;border:none;margin:5px;}
+input{width:70%;}
+button{background:linear-gradient(90deg,#00c6ff,#0072ff);color:white;font-weight:bold;cursor:pointer;}
+button:hover{transform:scale(1.05);transition:0.3s;}
 </style>
 </head>
 <body>
 
-<header>LonexNetwork Store</header>
-
-<div class="section">
-  <div class="card">
-    <h2>SMP Online</h2>
-    <div class="online" id="online">Yuklanmoqda...</div>
-  </div>
+<header>LonexNetwork Chat</header>
+<div style="text-align:center;margin:10px;">
+<input type="text" id="username" placeholder="Username">
+<button onclick="setUsername()">Kirish</button>
+<div id="onlineCount"></div>
 </div>
 
-<div class="section">
-  <div class="card">
-    <h2>Updatelar</h2>
-    <p>✔ Lifestealga Resourcepack qo'shildi</p>
-    <p>✔ Sifat oshirildi</p>
-    <p>✔ Jon sistemasi to'g'irlandi</p>
-    <p>✔ Eventlar ishga tushirildi</p>
-    <p>✔ ChatGames qo'shildi</p>
-  </div>
+<div class="chat-container" id="chat"></div>
+<div style="text-align:center;margin:10px;">
+<input type="text" id="message" placeholder="Xabaringizni yozing" disabled>
+<button id="sendBtn" onclick="sendMessage()" disabled>Yuborish</button>
 </div>
 
-<div class="section">
-  <div class="card">
-    <h2>Qoidalar</h2>
-    <p>🚫 So'kinish — mute</p>
-    <p>🚫 Server reklama — ban</p>
-    <p>⚠ TPS tushirish — ogohlantirish</p>
-    <p>⚠ Cheat — permanent ban</p>
-    <p>⚠ Bug abuse — ban</p>
-    <p>⚠ Adminlarga hurmatsizlik — jazolanadi</p>
-  </div>
-</div>
-
-<div class="section">
-  <div class="card">
-    <h2>Lifesteal Ranklar</h2>
-    <p>Knight — 8 000</p>
-    <p>Lord — 15 000</p>
-    <p>Paladin — 23 000</p>
-    <p>Duke — 34 000</p>
-    <p>King — 45 000</p>
-  </div>
-</div>
-
-<div class="section">
-  <h2>Sotuv Do'koni</h2>
-  <div class="store-grid">
-    <div class="store-card">
-      <h3>SMP Shards</h3>
-      <p>500 Shards — 15 000</p>
-      <button onclick="buyItem('SMP Shards',500,15000)">Sotib olish</button>
-    </div>
-    <div class="store-card">
-      <h3>SMP Shards</h3>
-      <p>1000 Shards — 25 000</p>
-      <button onclick="buyItem('SMP Shards',1000,25000)">Sotib olish</button>
-    </div>
-    <div class="store-card">
-      <h3>Lifesteal Coins</h3>
-      <p>100 Coins — 10 000</p>
-      <button onclick="buyItem('Lifesteal Coins',100,10000)">Sotib olish</button>
-    </div>
-    <div class="store-card">
-      <h3>Lifesteal Coins</h3>
-      <p>500 Coins — 45 000</p>
-      <button onclick="buyItem('Lifesteal Coins',500,45000)">Sotib olish</button>
-    </div>
-  </div>
-</div>
-
-<div class="section">
-  <div class="card">
-    <h2>Telegram</h2>
-    <p>Bizning rasmiy botimizga qo'shiling</p>
-    <button onclick="openTelegram()">Telegramga O'tish</button>
-  </div>
-</div>
-
-<footer>
-© 2026 LonexNetwork | Barcha huquqlar himoyalangan
-</footer>
-
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 <script>
-async function loadOnline(){
-  try{
-    let res = await fetch("https://api.mcsrvstat.us/2/127.0.0.1:25568");
-    let data = await res.json();
-    if(data.online){
-      document.getElementById("online").innerText = data.players.online + " O'yinchi Online";
-    }else{
-      document.getElementById("online").innerText = "Server Offline";
-    }
-  }catch{
-    document.getElementById("online").innerText = "Xatolik";
-  }
-}
-loadOnline();
-setInterval(loadOnline,15000);
+// Firebase konfiguratsiyasi
+const firebaseConfig = {
+  apiKey: "SENING_API_KEY",
+  authDomain: "SENING_PROJECT.firebaseapp.com",
+  databaseURL: "https://SENING_PROJECT.firebaseio.com",
+  projectId: "SENING_PROJECT",
+  storageBucket: "SENING_PROJECT.appspot.com",
+  messagingSenderId: "123456789",
+  appId: "SENING_APP_ID"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
 
-function openTelegram(){
-  window.open("https://t.me/Lonex_lifesteal_bot","_blank");
+let username = "";
+
+// Username o'rnatish va online holat
+function setUsername(){
+  const input = document.getElementById("username");
+  if(input.value.trim() === "") return alert("Username kiriting!");
+  username = input.value.trim();
+  input.disabled = true;
+  document.getElementById("message").disabled = false;
+  document.getElementById("sendBtn").disabled = false;
+
+  const userRef = db.ref('online/' + username);
+  userRef.set(true);
+  userRef.onDisconnect().remove();
 }
 
-function buyItem(type, amount, price){
-  if(confirm(`Siz ${amount} ${type} sotib olmoqchimisiz? Narxi: ${price}`)){
-    alert(`${amount} ${type} muvaffaqiyatli sotib olindi!`);
-    // Telegram botga xabar yuborish
-    let botLink = `https://t.me/Lonex_lifesteal_bot?start=buy_${type}_${amount}_${price}`;
-    window.open(botLink,'_blank');
-  }
+// Xabar yuborish
+function sendMessage(){
+  const msgInput = document.getElementById("message");
+  const text = msgInput.value.trim();
+  if(text === "") return;
+  db.ref('messages').push({
+    username: username,
+    message: text,
+    timestamp: Date.now()
+  });
+  msgInput.value = "";
 }
+
+// Real-time chat
+const chatDiv = document.getElementById("chat");
+db.ref('messages').on('child_added', snapshot => {
+  const data = snapshot.val();
+  const msgDiv = document.createElement("div");
+  msgDiv.className = "message";
+  const time = new Date(data.timestamp);
+  msgDiv.innerHTML = `<span class="username">${data.username}:</span> ${data.message} <span class='timestamp'>${time.getHours()}:${time.getMinutes().toString().padStart(2,'0')}</span>`;
+  chatDiv.appendChild(msgDiv);
+  chatDiv.scrollTop = chatDiv.scrollHeight;
+});
+
+// Online foydalanuvchilar soni
+const onlineCountDiv = document.getElementById("onlineCount");
+db.ref('online').on('value', snapshot => {
+  const users = snapshot.val() || {};
+  const count = Object.keys(users).length;
+  onlineCountDiv.innerText = `Online foydalanuvchilar: ${count}`;
+});
 </script>
 
 </body>
 </html>
+
