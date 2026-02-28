@@ -39,15 +39,16 @@ button:hover{transform:scale(1.05);transition:0.3s;}
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 <script>
-// Firebase konfiguratsiyasi
+// Firebase config (sening bergan ma’lumotlaring)
 const firebaseConfig = {
-  apiKey: "SENING_API_KEY",
-  authDomain: "SENING_PROJECT.firebaseapp.com",
-  databaseURL: "https://SENING_PROJECT.firebaseio.com",
-  projectId: "SENING_PROJECT",
-  storageBucket: "SENING_PROJECT.appspot.com",
-  messagingSenderId: "123456789",
-  appId: "SENING_APP_ID"
+  apiKey: "AIzaSyBNlrNjMr8ACItG2SQeROi2j1YffyJPcKY",
+  authDomain: "lonexnetworkchat.firebaseapp.com",
+  databaseURL: "https://lonexnetworkchat-default-rtdb.firebaseio.com",
+  projectId: "lonexnetworkchat",
+  storageBucket: "lonexnetworkchat.firebasestorage.app",
+  messagingSenderId: "70200825390",
+  appId: "1:70200825390:web:754f58c0d7c39ac91c31bf",
+  measurementId: "G-DWKVHH0MLM"
 };
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
@@ -83,10 +84,8 @@ function sendMessage(){
 
 // Global chat real-time
 const chatDiv = document.getElementById("chat");
-
-// Oldingi xabarlarni olish va realtime yangilash
 db.ref('messages').on('value', snapshot => {
-  chatDiv.innerHTML = ""; // Har safar qayta chizish
+  chatDiv.innerHTML = ""; 
   snapshot.forEach(child => {
     const data = child.val();
     const msgDiv = document.createElement("div");
