@@ -18,6 +18,7 @@ input,button{padding:10px;border-radius:8px;border:none;margin:5px;}
 input{width:70%;}
 button{background:linear-gradient(90deg,#00c6ff,#0072ff);color:white;font-weight:bold;cursor:pointer;}
 button:hover{transform:scale(1.05);transition:0.3s;}
+footer{text-align:center;padding:15px;margin-top:20px;border-top:1px solid #0072ff44;color:#00c6ff;}
 </style>
 </head>
 <body>
@@ -35,11 +36,13 @@ button:hover{transform:scale(1.05);transition:0.3s;}
 <button id="sendBtn" onclick="sendMessage()" disabled>Yuborish</button>
 </div>
 
+<footer>LonexNetwork – Barcha huquqlar himoyalangan © 2026</footer>
+
 <!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 <script>
-// Firebase config (sening bergan ma’lumotlaring)
+// Firebase config (senga oldin bergan)
 const firebaseConfig = {
   apiKey: "AIzaSyBNlrNjMr8ACItG2SQeROi2j1YffyJPcKY",
   authDomain: "lonexnetworkchat.firebaseapp.com",
@@ -55,11 +58,20 @@ const db = firebase.database();
 
 let username = "";
 
-// Username o'rnatish va online holat
+// Username o‘rnatish va localStorage bilan saqlash
+window.onload = function() {
+  const saved = localStorage.getItem("lonexUsername");
+  if(saved){
+    document.getElementById("username").value = saved;
+    setUsername();
+  }
+}
+
 function setUsername(){
   const input = document.getElementById("username");
   if(input.value.trim() === "") return alert("Username kiriting!");
   username = input.value.trim();
+  localStorage.setItem("lonexUsername", username);
   input.disabled = true;
   document.getElementById("message").disabled = false;
   document.getElementById("sendBtn").disabled = false;
