@@ -3,22 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LonexNetwork Global Chat</title>
+<title>LonexNetwork Global Chat + Store</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif;}
 body{background:radial-gradient(circle at top,#0a0f2c,#050816 60%);color:white;}
 header{text-align:center;padding:30px;font-size:45px;background:linear-gradient(90deg,#00c6ff,#0072ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 #onlineCount{margin-top:5px;color:#00c6ff;font-weight:bold;}
-.chat-container{max-width:900px;margin:20px auto;background:#0c1224;padding:20px;border-radius:15px;height:500px;overflow-y:auto;border:1px solid #0072ff44;}
+.chat-container{max-width:900px;margin:20px auto;background:#0c1224;padding:20px;border-radius:15px;height:400px;overflow-y:auto;border:1px solid #0072ff44;}
+.store-container{max-width:900px;margin:20px auto;background:#0c1224;padding:20px;border-radius:15px;border:1px solid #0072ff44;}
 .message{margin-bottom:10px;word-wrap:break-word;}
 .username{color:#00c6ff;font-weight:bold;margin-right:5px;}
 .timestamp{color:#0072ff;font-size:0.8em;margin-left:5px;}
 input,button{padding:10px;border-radius:8px;border:none;margin:5px;}
-input{width:70%;}
+input[type="file"]{padding:5px;}
+input[type="text"]{width:60%;}
 button{background:linear-gradient(90deg,#00c6ff,#0072ff);color:white;font-weight:bold;cursor:pointer;}
 button:hover{transform:scale(1.05);transition:0.3s;}
+.store-item{border:1px solid #0072ff44;padding:15px;margin:10px 0;border-radius:12px;display:flex;justify-content:space-between;align-items:center;}
 footer{text-align:center;padding:15px;margin-top:20px;border-top:1px solid #0072ff44;color:#00c6ff;}
+img.chat-img{max-width:200px;display:block;margin-top:5px;border-radius:8px;}
 </style>
 </head>
 <body>
@@ -33,7 +37,29 @@ footer{text-align:center;padding:15px;margin-top:20px;border-top:1px solid #0072
 <div class="chat-container" id="chat"></div>
 <div style="text-align:center;margin:10px;">
 <input type="text" id="message" placeholder="Xabaringizni yozing" disabled>
+<input type="file" id="image" accept="image/*" disabled>
 <button id="sendBtn" onclick="sendMessage()" disabled>Yuborish</button>
+</div>
+
+<!-- Store section -->
+<div class="store-container">
+<h2 style="text-align:center;color:#00c6ff;">LonexNetwork Do'koni</h2>
+<div class="store-item">
+<span>100 Coins (Lifesteal)</span>
+<button onclick="buyItem('Coins',100)">Sotib olish</button>
+</div>
+<div class="store-item">
+<span>500 Shards (SMP)</span>
+<button onclick="buyItem('Shards',500)">Sotib olish</button>
+</div>
+<div class="store-item">
+<span>200 Coins (Lifesteal)</span>
+<button onclick="buyItem('Coins',200)">Sotib olish</button>
+</div>
+<div class="store-item">
+<span>1000 Shards (SMP)</span>
+<button onclick="buyItem('Shards',1000)">Sotib olish</button>
+</div>
 </div>
 
 <footer>LonexNetwork – Barcha huquqlar himoyalangan © 2026</footer>
@@ -41,8 +67,10 @@ footer{text-align:center;padding:15px;margin-top:20px;border-top:1px solid #0072
 <!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+
 <script>
-// Firebase config (senga oldin bergan)
+// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyBNlrNjMr8ACItG2SQeROi2j1YffyJPcKY",
   authDomain: "lonexnetworkchat.firebaseapp.com",
@@ -55,6 +83,7 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
+const storage = firebase.storage();
 
 let username = "";
 
@@ -67,6 +96,11 @@ window.onload = function() {
   }
 }
 
+// Enter bosilganda yuborish
+document.getElementById("message").addEventListener("keydown", function(e){
+  if(e.key === "Enter") sendMessage();
+});
+
 function setUsername(){
   const input = document.getElementById("username");
   if(input.value.trim() === "") return alert("Username kiriting!");
@@ -75,6 +109,7 @@ function setUsername(){
   input.disabled = true;
   document.getElementById("message").disabled = false;
   document.getElementById("sendBtn").disabled = false;
+  document.getElementById("image").disabled = false;
 
   const userRef = db.ref('online/' + username);
   userRef.set(true);
@@ -82,15 +117,29 @@ function setUsername(){
 }
 
 // Xabar yuborish
-function sendMessage(){
+async function sendMessage(){
   const msgInput = document.getElementById("message");
+  const imageInput = document.getElementById("image");
   const text = msgInput.value.trim();
-  if(text === "") return;
+  const file = imageInput.files[0];
+
+  let imageUrl = "";
+  if(file){
+    const storageRef = storage.ref('chat-images/' + Date.now() + '_' + file.name);
+    await storageRef.put(file);
+    imageUrl = await storageRef.getDownloadURL();
+    imageInput.value = "";
+  }
+
+  if(text === "" && imageUrl === "") return;
+
   db.ref('messages').push({
     username: username,
     message: text,
+    image: imageUrl,
     timestamp: Date.now()
   });
+
   msgInput.value = "";
 }
 
@@ -103,7 +152,10 @@ db.ref('messages').on('value', snapshot => {
     const msgDiv = document.createElement("div");
     msgDiv.className = "message";
     const time = new Date(data.timestamp);
-    msgDiv.innerHTML = `<span class="username">${data.username}:</span> ${data.message} <span class='timestamp'>${time.getHours()}:${time.getMinutes().toString().padStart(2,'0')}</span>`;
+    let content = "";
+    if(data.message) content += data.message;
+    if(data.image) content += `<br><img src="${data.image}" class="chat-img">`;
+    msgDiv.innerHTML = `<span class="username">${data.username}:</span> ${content} <span class='timestamp'>${time.getHours()}:${time.getMinutes().toString().padStart(2,'0')}</span>`;
     chatDiv.appendChild(msgDiv);
   });
   chatDiv.scrollTop = chatDiv.scrollHeight;
@@ -116,8 +168,15 @@ db.ref('online').on('value', snapshot => {
   const count = Object.keys(users).length;
   onlineCountDiv.innerText = `Online foydalanuvchilar: ${count}`;
 });
+
+// Store logic
+function buyItem(type, amount){
+  if(!username) return alert("Avval username kiriting!");
+  if(confirm(`Siz ${amount} ${type} sotib olmoqchimisiz?`)){
+    window.open(`https://t.me/Lonex_LifeSteal_bot?start=${username}_${type}_${amount}`,"_blank");
+  }
+}
 </script>
 
 </body>
 </html>
-
