@@ -3,26 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LonexNetwork Global Chat + Store</title>
+<title>LonexNetwork Global Chat</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif;}
 body{background:radial-gradient(circle at top,#0a0f2c,#050816 60%);color:white;}
 header{text-align:center;padding:30px;font-size:45px;background:linear-gradient(90deg,#00c6ff,#0072ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 #onlineCount{margin-top:5px;color:#00c6ff;font-weight:bold;}
-.chat-container{max-width:900px;margin:20px auto;background:#0c1224;padding:20px;border-radius:15px;height:400px;overflow-y:auto;border:1px solid #0072ff44;}
-.store-container{max-width:900px;margin:20px auto;background:#0c1224;padding:20px;border-radius:15px;border:1px solid #0072ff44;}
+.chat-container{max-width:900px;margin:20px auto;background:#0c1224;padding:20px;border-radius:15px;height:450px;overflow-y:auto;border:1px solid #0072ff44;}
 .message{margin-bottom:10px;word-wrap:break-word;}
 .username{color:#00c6ff;font-weight:bold;margin-right:5px;}
 .timestamp{color:#0072ff;font-size:0.8em;margin-left:5px;}
 input,button{padding:10px;border-radius:8px;border:none;margin:5px;}
-input[type="file"]{padding:5px;}
 input[type="text"]{width:60%;}
 button{background:linear-gradient(90deg,#00c6ff,#0072ff);color:white;font-weight:bold;cursor:pointer;}
 button:hover{transform:scale(1.05);transition:0.3s;}
-.store-item{border:1px solid #0072ff44;padding:15px;margin:10px 0;border-radius:12px;display:flex;justify-content:space-between;align-items:center;}
-footer{text-align:center;padding:15px;margin-top:20px;border-top:1px solid #0072ff44;color:#00c6ff;}
 img.chat-img{max-width:200px;display:block;margin-top:5px;border-radius:8px;}
+#imagePreview{max-width:150px;margin-top:5px;border-radius:8px;display:none;}
+footer{text-align:center;padding:15px;margin-top:20px;border-top:1px solid #0072ff44;color:#00c6ff;}
 </style>
 </head>
 <body>
@@ -35,31 +33,12 @@ img.chat-img{max-width:200px;display:block;margin-top:5px;border-radius:8px;}
 </div>
 
 <div class="chat-container" id="chat"></div>
+
 <div style="text-align:center;margin:10px;">
 <input type="text" id="message" placeholder="Xabaringizni yozing" disabled>
 <input type="file" id="image" accept="image/*" disabled>
+<img id="imagePreview">
 <button id="sendBtn" onclick="sendMessage()" disabled>Yuborish</button>
-</div>
-
-<!-- Store section -->
-<div class="store-container">
-<h2 style="text-align:center;color:#00c6ff;">LonexNetwork Do'koni</h2>
-<div class="store-item">
-<span>100 Coins (Lifesteal)</span>
-<button onclick="buyItem('Coins',100)">Sotib olish</button>
-</div>
-<div class="store-item">
-<span>500 Shards (SMP)</span>
-<button onclick="buyItem('Shards',500)">Sotib olish</button>
-</div>
-<div class="store-item">
-<span>200 Coins (Lifesteal)</span>
-<button onclick="buyItem('Coins',200)">Sotib olish</button>
-</div>
-<div class="store-item">
-<span>1000 Shards (SMP)</span>
-<button onclick="buyItem('Shards',1000)">Sotib olish</button>
-</div>
 </div>
 
 <footer>LonexNetwork – Barcha huquqlar himoyalangan © 2026</footer>
@@ -96,9 +75,25 @@ window.onload = function() {
   }
 }
 
-// Enter bosilganda yuborish
+// Enter bosilganda xabar yuborish
 document.getElementById("message").addEventListener("keydown", function(e){
   if(e.key === "Enter") sendMessage();
+});
+
+// Preview rasm
+const imageInput = document.getElementById("image");
+const imagePreview = document.getElementById("imagePreview");
+imageInput.addEventListener("change", function(){
+  if(this.files && this.files[0]){
+    const reader = new FileReader();
+    reader.onload = function(e){
+      imagePreview.src = e.target.result;
+      imagePreview.style.display = "block";
+    }
+    reader.readAsDataURL(this.files[0]);
+  } else {
+    imagePreview.style.display = "none";
+  }
 });
 
 function setUsername(){
@@ -119,8 +114,6 @@ function setUsername(){
 // Xabar yuborish
 async function sendMessage(){
   const msgInput = document.getElementById("message");
-  const imageInput = document.getElementById("image");
-  const text = msgInput.value.trim();
   const file = imageInput.files[0];
 
   let imageUrl = "";
@@ -129,8 +122,10 @@ async function sendMessage(){
     await storageRef.put(file);
     imageUrl = await storageRef.getDownloadURL();
     imageInput.value = "";
+    imagePreview.style.display = "none";
   }
 
+  const text = msgInput.value.trim();
   if(text === "" && imageUrl === "") return;
 
   db.ref('messages').push({
@@ -143,10 +138,10 @@ async function sendMessage(){
   msgInput.value = "";
 }
 
-// Global chat real-time
+// Real-time chat
 const chatDiv = document.getElementById("chat");
 db.ref('messages').on('value', snapshot => {
-  chatDiv.innerHTML = ""; 
+  chatDiv.innerHTML = "";
   snapshot.forEach(child => {
     const data = child.val();
     const msgDiv = document.createElement("div");
@@ -168,14 +163,6 @@ db.ref('online').on('value', snapshot => {
   const count = Object.keys(users).length;
   onlineCountDiv.innerText = `Online foydalanuvchilar: ${count}`;
 });
-
-// Store logic
-function buyItem(type, amount){
-  if(!username) return alert("Avval username kiriting!");
-  if(confirm(`Siz ${amount} ${type} sotib olmoqchimisiz?`)){
-    window.open(`https://t.me/Lonex_LifeSteal_bot?start=${username}_${type}_${amount}`,"_blank");
-  }
-}
 </script>
 
 </body>
