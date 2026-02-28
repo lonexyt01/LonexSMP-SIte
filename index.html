@@ -5,69 +5,103 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LonexNetwork</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
-body{
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
 font-family:'Orbitron',sans-serif;
-background:#050816;
+}
+
+body{
+background:radial-gradient(circle at top,#0a0f2c,#050816 60%);
 color:white;
+overflow-x:hidden;
+}
+
+/* Neon glow background animation */
+body::before{
+content:"";
+position:fixed;
+width:200%;
+height:200%;
+background:radial-gradient(circle,#00c6ff33 10%,transparent 40%),
+radial-gradient(circle,#0072ff33 10%,transparent 40%);
+animation:moveBg 15s linear infinite;
+z-index:-1;
+}
+
+@keyframes moveBg{
+0%{transform:translate(0,0);}
+50%{transform:translate(-10%,-10%);}
+100%{transform:translate(0,0);}
 }
 
 header{
 padding:40px;
 text-align:center;
+font-size:55px;
+font-weight:700;
 background:linear-gradient(90deg,#00c6ff,#0072ff);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-font-size:48px;
-font-weight:700;
+text-shadow:0 0 25px #00c6ff88;
 }
 
 .section{
-padding:60px 20px;
+padding:70px 20px;
 text-align:center;
 }
 
 .card{
 background:#0c1224;
-margin:20px auto;
-padding:30px;
-border-radius:15px;
-max-width:800px;
-box-shadow:0 0 20px #0072ff55;
+margin:25px auto;
+padding:35px;
+border-radius:20px;
+max-width:900px;
+box-shadow:0 0 30px #0072ff55;
+border:1px solid #0072ff44;
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.02);
+box-shadow:0 0 40px #00c6ff;
+}
+
+.online{
+font-size:26px;
+color:#00c6ff;
+margin-top:15px;
 }
 
 button{
 background:linear-gradient(90deg,#00c6ff,#0072ff);
 border:none;
-padding:12px 25px;
-border-radius:8px;
+padding:14px 30px;
+border-radius:10px;
 color:white;
 cursor:pointer;
 font-weight:bold;
+margin-top:15px;
+transition:0.3s;
 }
 
-.online-box{
-font-size:22px;
-margin-top:10px;
-color:#00c6ff;
-}
-
-input{
-padding:10px;
-border-radius:6px;
-border:none;
-margin:5px;
+button:hover{
+transform:scale(1.1);
+box-shadow:0 0 20px #00c6ff;
 }
 
 footer{
-padding:20px;
-text-align:center;
 background:#0c1224;
+padding:25px;
+text-align:center;
+margin-top:40px;
+border-top:1px solid #0072ff44;
 }
 </style>
 </head>
-
 <body>
 
 <header>LonexNetwork</header>
@@ -75,7 +109,7 @@ background:#0c1224;
 <div class="section">
 <div class="card">
 <h2>SMP Online</h2>
-<div class="online-box" id="smpOnline">Yuklanmoqda...</div>
+<div class="online" id="online">Yuklanmoqda...</div>
 </div>
 </div>
 
@@ -95,10 +129,10 @@ background:#0c1224;
 <h2>Qoidalar</h2>
 <p>🚫 So'kinish — mute</p>
 <p>🚫 Server reklama — ban</p>
-<p>⚠ TPS tushirishga urinish — ogohlantirish</p>
-<p>⚠ Cheat ishlatish — permanent ban</p>
-<p>⚠ Adminlarga hurmatsizlik — jazolanadi</p>
+<p>⚠ TPS tushirish — ogohlantirish</p>
+<p>⚠ Cheat — permanent ban</p>
 <p>⚠ Bug abuse — ban</p>
+<p>⚠ Adminlarga hurmatsizlik — jazolanadi</p>
 </div>
 </div>
 
@@ -115,29 +149,9 @@ background:#0c1224;
 
 <div class="section">
 <div class="card">
-<h2>SMP Rank</h2>
-<p>Faqat Media mavjud</p>
-<p>Qanday olish server ichida e'lon qilingan</p>
-</div>
-</div>
-
-<div class="section">
-<div class="card">
-<h2>Shaxsiy Kabinet</h2>
-<input type="text" placeholder="Username">
-<input type="password" placeholder="Parol">
-<br><br>
-<button>Kirish</button>
-</div>
-</div>
-
-<div class="section">
-<div class="card">
-<h2>Admin Panel</h2>
-<p>Faqat Adminlar uchun</p>
-<input type="password" placeholder="Admin Parol">
-<br><br>
-<button>Kirish</button>
+<h2>Telegram</h2>
+<p>Bizning rasmiy botimizga qo'shiling</p>
+<button onclick="openTelegram()">Telegramga O'tish</button>
 </div>
 </div>
 
@@ -146,17 +160,29 @@ background:#0c1224;
 </footer>
 
 <script>
-async function getOnline(){
+async function loadOnline(){
 try{
-let res = await fetch('/api/online');
+let res = await fetch("https://api.mcsrvstat.us/2/YOUR_IP:25568");
 let data = await res.json();
-document.getElementById("smpOnline").innerText = data.smp + " O'yinchi Online";
+
+if(data.online){
+document.getElementById("online").innerText =
+data.players.online + " O'yinchi Online";
+}else{
+document.getElementById("online").innerText = "Server Offline";
+}
 }catch{
-document.getElementById("smpOnline").innerText = "Server Offline";
+document.getElementById("online").innerText = "Xatolik";
 }
 }
-getOnline();
-setInterval(getOnline,10000);
+loadOnline();
+setInterval(loadOnline,15000);
+
+function openTelegram(){
+if(confirm("Botga kirasizmi?")){
+window.open("https://t.me/Lonex_LifesteSteal_bot","_blank");
+}
+}
 </script>
 
 </body>
