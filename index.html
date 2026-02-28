@@ -118,9 +118,15 @@ async function sendMessage(){
 
   let imageUrl = "";
   if(file){
-    const storageRef = storage.ref('chat-images/' + Date.now() + '_' + file.name);
-    await storageRef.put(file);
-    imageUrl = await storageRef.getDownloadURL();
+    const fileName = Date.now() + '_' + file.name.replace(/\s+/g,'_');
+    const storageRef = storage.ref('chat-images/' + fileName);
+    try {
+      const uploadTaskSnapshot = await storageRef.put(file);
+      imageUrl = await uploadTaskSnapshot.ref.getDownloadURL();
+    } catch(err){
+      alert("Rasm yuborishda xatolik: " + err.message);
+      return;
+    }
     imageInput.value = "";
     imagePreview.style.display = "none";
   }
