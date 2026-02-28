@@ -121,8 +121,9 @@ async function sendMessage(){
     const fileName = Date.now() + '_' + file.name.replace(/\s+/g,'_');
     const storageRef = storage.ref('chat-images/' + fileName);
     try {
-      const uploadTaskSnapshot = await storageRef.put(file);
-      imageUrl = await uploadTaskSnapshot.ref.getDownloadURL();
+      // Yuklash
+      await storageRef.put(file);
+      imageUrl = await storageRef.getDownloadURL();
     } catch(err){
       alert("Rasm yuborishda xatolik: " + err.message);
       return;
@@ -134,6 +135,7 @@ async function sendMessage(){
   const text = msgInput.value.trim();
   if(text === "" && imageUrl === "") return;
 
+  // Firebase Database ga push
   db.ref('messages').push({
     username: username,
     message: text,
@@ -166,8 +168,7 @@ db.ref('messages').on('value', snapshot => {
 const onlineCountDiv = document.getElementById("onlineCount");
 db.ref('online').on('value', snapshot => {
   const users = snapshot.val() || {};
-  const count = Object.keys(users).length;
-  onlineCountDiv.innerText = `Online foydalanuvchilar: ${count}`;
+  onlineCountDiv.innerText = `Online foydalanuvchilar: ${Object.keys(users).length}`;
 });
 </script>
 
