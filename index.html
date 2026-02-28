@@ -162,7 +162,7 @@ border-top:1px solid #0072ff44;
 <script>
 async function loadOnline(){
 try{
-let res = await fetch("https://api.mcsrvstat.us/2/YOUR_IP:25568");
+let res = await fetch("https://api.mcsrvstat.us/2/127.0.0.1:25568");
 let data = await res.json();
 
 if(data.online){
@@ -180,10 +180,11 @@ setInterval(loadOnline,15000);
 
 function openTelegram(){
 if(confirm("Botga kirasizmi?")){
-window.open("https://t.me/Lonex_LifesteSteal_bot","_blank");
+window.open("https://t.me/Lonex_LifeSteal_bot","_blank");
 }
 }
 </script>
 
 </body>
 </html>
+
