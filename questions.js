@@ -1,0 +1,33 @@
+const questions = {
+    3: [
+        { q: "Buyuk Ipak yo‘li qayerdan boshlangan?", options: ["Xitoy", "Rim", "Hindiston", "Arabiston"], correct: "Xitoy" },
+        { q: "Buyuk Ipak yo‘li qaysi qit’alarni bog‘ladi?", options: ["Osiyo va Yevropa", "Afrika va Amerika", "Avstraliya va Osiyo", "Antarktida"], correct: "Osiyo va Yevropa" },
+        { q: "Ipak yo‘li nomi nimadan kelib chiqqan?", options: ["Ipak savdosidan", "Toshdan", "Oltindan", "Temirdan"], correct: "Ipak savdosidan" },
+        { q: "Ipak yo‘li nimaga xizmat qilgan?", options: ["Savdo", "Urush", "Sayohat", "O‘yin"], correct: "Savdo" },
+        { q: "Xitoydan eng mashhur eksport mahsuloti nima bo‘lgan?", options: ["Ipak", "Temir", "Bug‘doy", "Ko‘mir"], correct: "Ipak" },
+        { q: "Ipak yo‘li orqali qaysi madaniyat tarqalgan?", options: ["Buddizm", "Islom", "Nasroniylik", "Hech qaysi"], correct: "Buddizm" },
+        { q: "Ipak yo‘li orqali savdo qilgan davlatlardan biri?", options: ["Xitoy", "Kanada", "Braziliya", "Avstraliya"], correct: "Xitoy" },
+        { q: "Ipak yo‘li nechta asosiy yo‘nalishga bo‘lingan?", options: ["2", "5", "10", "1"], correct: "2" },
+        { q: "Shimoliy yo‘l qayerdan o‘tgan?", options: ["Dashtlardan", "Dengizdan", "Tog‘ ostidan", "Cho‘ldan"], correct: "Dashtlardan" },
+        { q: "Janubiy yo‘l qayerdan o‘tgan?", options: ["Cho‘llardan", "Okeandan", "Qutbdan", "O‘rmondan"], correct: "Cho‘llardan" },
+        { q: "Ipak yo‘li orqali yana nima tashilgan?", options: ["Faqat Ziravorlar", "Faqat suv", "Faqat qum", "Faqat tuz"], correct: "Ziravorlar" },
+        { q: "Qadimda savdogarlar kimlar edi?", options: ["Karvonchilar", "Dehqonlar", "O‘qituvchilar", "Shoirlar"], correct: "Karvonchilar" },
+        { q: "Karvonlar nimadan tashkil topgan?", options: ["Tuya", "Ot", "Eshak", "Samolyot"], correct: "Tuya" },
+        { q: "Ipak yo‘li orqali bilimlar ham tarqalganmi?", options: ["Ha", "Yo‘q", "Faqat urush", "Faqat savdo"], correct: "Ha" },
+        { q: "Buyuk Ipak yo‘li qachon paydo bo‘lgan?", options: ["Miloddan avvalgi II asr", "XX asr", "XV asr", "I asr"], correct: "Miloddan avvalgi II asr" },
+        { q: "Ipak yo‘li orqali qaysi shahar mashhur bo‘lgan?", options: ["Samarqand", "New York", "Tokyo", "London"], correct: "Samarqand" },
+        { q: "Buxoro nima bilan mashhur bo‘lgan?", options: ["Savdo markazi", "Urush", "O‘yin", "Sport"], correct: "Savdo markazi" },
+        { q: "Ipak yo‘li orqali qaysi mahsulotlar kelgan?", options: ["Choy", "Qum", "Tosh", "Suv"], correct: "Choy" },
+        { q: "Yevropaga nima olib borilgan?", options: ["Ipak", "Tosh", "Qum", "Suv"], correct: "Ipak" },
+        { q: "Savdo yo‘llari qanday ahamiyatga ega bo‘lgan?", options: ["Rivojlanish", "Faqat urush", "Faqat sayr", "Hech qanday"], correct: "Rivojlanish" },
+        { q: "Ipak yo‘li orqali qaysi hayvon ko‘p ishlatilgan?", options: ["Tuya", "Fil", "It", "Mushuk"], correct: "Tuya" },
+        { q: "Savdogarlar nima uchun xavfga duch kelgan?", options: ["Qaroqchilar", "Yomg‘ir", "Quyosh", "O‘yin"], correct: "Qaroqchilar" },
+        { q: "Ipak yo‘li orqali qanday madaniyat tarqalgan?", options: ["Turli madaniyatlar", "Bitta madaniyat", "Hech narsa", "Faqat sport"], correct: "Turli madaniyatlar" },
+        { q: "Buyuk Ipak yo‘li bugungi kunda nima sifatida qaraladi?", options: ["Tarixiy meros", "O‘yin", "Film", "Sport"], correct: "Tarixiy meros" },
+        { q: "Ipak yo‘li orqali qaysi davlat boyigan?", options: ["Ko‘p davlatlar", "Hech biri", "Faqat bitta", "Faqat Afrika"], correct: "Ko‘p davlatlar" },
+        { q: "Ipak yo‘li savdo uchun necha yil ishlatilgan?", options: ["Yuzlab yillar", "1 yil", "10 yil", "5 yil"], correct: "Yuzlab yillar" },
+        { q: "Ipak yo‘li orqali qaysi hunarmandchilik rivojlangan?", options: ["To‘qimachilik", "Faqat baliq", "Faqat sport", "Hech qaysi"], correct: "To‘qimachilik" },
+        { q: "Ipak yo‘li qaysi hududdan ham o‘tgan?", options: ["Markaziy Osiyo", "Antarktida", "Arktika", "Mars"], correct: "Markaziy Osiyo" },
+        { q: "Ipak yo‘lining asosiy maqsadi nima edi?", options: ["Savdo va aloqalar", "Urush", "O‘yin", "Dam olish"], correct: "Savdo va aloqalar" }
+    ]
+};

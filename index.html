@@ -3,389 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LONEXLIFESTEAL --> Home</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-<style>
-/* -------- General -------- */
-body {
-  margin:0;
-  font-family:'Orbitron', sans-serif;
-  background:#0a0a0a;
-  color:#fff;
-  text-transform: lowercase;
-}
-a { text-decoration:none; color:inherit; }
-
-/* -------- Navbar -------- */
-nav {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:15px 50px;
-  background:#111;
-  position:sticky;
-  top:0;
-  z-index:1000;
-  box-shadow:0 2px 8px rgba(0,0,0,0.5);
-}
-nav .logo {
-  font-size:2rem;
-  font-weight:bold;
-  text-transform:uppercase;
-  background: linear-gradient(270deg, #ff0000, #ff4500, #ff6347);
-  background-size: 600% 600%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientAnim 6s ease infinite;
-}
-@keyframes gradientAnim {
-  0% {background-position:0% 50%;}
-  50% {background-position:100% 50%;}
-  100% {background-position:0% 50%;}
-}
-nav ul { list-style:none; display:flex; gap:25px; }
-nav ul li a { color:#fff; text-transform:uppercase; transition:0.3s; }
-nav ul li a:hover { color:#ff6347; }
-
-/* -------- Hero Section -------- */
-.hero {
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  height:80vh;
-  background:url('https://i.imgur.com/ZF6s192.jpg') no-repeat center center/cover;
-  position:relative;
-}
-.hero::after {
-  content:"";
-  position:absolute;
-  top:0; left:0; right:0; bottom:0;
-  background: rgba(0,0,0,0.6);
-}
-.hero h1 {
-  position:relative;
-  font-size:3rem;
-  margin-bottom:10px;
-  text-transform:uppercase;
-  background: linear-gradient(270deg, #ff0000, #ff4500);
-  background-size: 600% 600%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientAnim 8s ease infinite;
-}
-.hero p {
-  position:relative;
-  font-size:1.2rem;
-  margin-bottom:20px;
-  color:#ff4500;
-  z-index:1;
-}
-.hero .ip-copy {
-  position:relative;
-  display:flex;
-  gap:10px;
-  z-index:1;
-}
-.hero .ip-copy input {
-  padding:10px;
-  border-radius:8px;
-  border:none;
-  width:220px;
-  text-align:center;
-  font-weight:bold;
-}
-.hero .ip-copy button {
-  padding:10px 15px;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-  background:#ff4500;
-  font-weight:bold;
-  color:#fff;
-  transition:0.3s;
-}
-.hero .ip-copy button:hover { background:#ff6347; transform:scale(1.05); }
-
-/* -------- Server Status -------- */
-.status {
-  text-align:center;
-  padding:40px 20px;
-  background:#111;
-}
-.status h2 { font-size:2rem; text-transform:uppercase; color:#ff4500; margin-bottom:20px; }
-.status p { font-size:1.1rem; margin:5px 0; }
-
-/* -------- Shop Section -------- */
-.shop {
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:25px;
-  padding:50px 20px;
-  background:#1a1a1a;
-}
-.item {
-  background:#222;
-  border-radius:20px;
-  width:280px;
-  padding:20px;
-  position:relative;
-  transition:0.5s;
-  text-align:left;
-  overflow:hidden;
-  box-shadow:0 0 10px rgba(0,0,0,0.5);
-}
-.item::before {
-  content:"";
-  position:absolute;
-  top:0; left:0; width:100%; height:100%;
-  background:linear-gradient(45deg, #03eca6fd, #ffa600ec, #edf102);
-  z-index:0;
-  opacity:0.1;
-  transition:0.5s;
-  border-radius:20px;
-}
-.item:hover::before { opacity:0.25; }
-.item h3 {
-  position:relative; z-index:1;
-  color:#ff6347;
-  text-transform:uppercase;
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.item h3 img {
-  width:28px;
-  height:28px;
-}
-.item ul { position:relative; z-index:1; list-style:none; padding-left:15px; line-height:1.4; font-size:0.85rem; margin-bottom:10px; }
-.item button {
-  position:relative; z-index:1;
-  width:100%;
-  padding:10px;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
-  background:#ff4500;
-  color:#fff;
-  font-weight:bold;
-  text-transform:uppercase;
-  transition:0.3s;
-}
-.item button:hover { transform:scale(1.05); background:#ff6347; }
-
-/* -------- Footer -------- */
-footer {
-  text-align:center;
-  padding:25px;
-  background:#111;
-  font-size:0.9rem;
-  color:#888;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  align-items:center;
-}
-footer .fbtn {
-  padding:10px 20px;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-  font-weight:bold;
-  text-transform:uppercase;
-  background:#ff4500;
-  color:#fff;
-  transition:0.3s;
-}
-footer .fbtn:hover { background:#ff6347; animation: pulse 1s infinite; }
-
-@keyframes pulse {
-  0% {transform:scale(1);}
-  50% {transform:scale(1.05);}
-  100% {transform:scale(1);}
-}
-
-/* -------- Rank Hover Float -------- */
-@keyframes floatCard {
-  0% {transform:translateY(0);}
-  50% {transform:translateY(-10px);}
-  100% {transform:translateY(0);}
-}
-.item:hover { animation: floatCard 1.2s ease-in-out infinite; }
-
-</style>
+<title>Qadimgi Dunyo Tarixi</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Navbar -->
-<nav>
-  <div class="logo">LonexLifeSteal</div>
-  <ul>
-    <li><a href="#home">Home</a></li>
-    <li><a href="#shop">Shop</a></li>
-    <li><a href="#status">Server Status</a></li>
-  </ul>
-</nav>
-
-<!-- Hero Section -->
-<section class="hero" id="home">
-  <h1>LONEXLIFESTEAL</h1>
-  <p>O‘zbekistondagi eng zo‘r LifeSteal server!</p>
-  <p>Serverga Ulanish uchun IP manzilini nusxalang:</p>
-  <div class="ip-copy">
-    <input type="text" id="serverIP" value="radio-violations.gl.joinmc.link" readonly>
-    <button onclick="copyIP()">Copy IP</button>
-    <button onclick="joinServer()">Join Server</button>
-  </div>
-</section>
-
-<!-- Server Status -->
-<section class="status" id="status">
-  <h2>Server Status</h2>
-  <p>Online Players: <span id="players">Loading...</span></p>
-  <p>Status: <span id="serverState">Loading...</span></p>
-</section>
-
-<!-- Shop Section -->
-<section class="shop" id="shop">
-
-<!-- Booster -->
-<div class="item">
-  <h3><img src="https://i.imgur.com/0ZP1wXt.png" alt="Booster Icon">Booster</h3>
-  <ul>
-    <li>✣ Perk Commands</li>
-    <li>₪ Access to /nick</li>
-    <li>₪ Access to /back</li>
-    <li>₪ Access to /disposal</li>
-    <li>₪ Access to /feed</li>
-    <li>₪ Access to /recipe</li>
-    <li>₪ Access to /pwarp</li>
-    <li>₪ Access to /cosmetics</li>
-  </ul>
-  <button onclick="buy('Booster')">CLICK TO BUY</button>
+<div id="tutorial">
+    <h1>Buyuk Ipak yo'li</h1>
+    <p>Buyuk Ipak yo'li haqidagi Mavzu bo'yicha 30ta savoldan</p>
+    <p2>Iborat Test, Testni boshlash uchun boshlash tugmasini bosing</p2>
+    <button id="startBtn">Start</button>
 </div>
 
-<!-- Elite -->
-<div class="item">
-  <h3><img src="https://i.imgur.com/M2P9RYY.png" alt="Elite Icon">Elite</h3>
-  <ul>
-    <li>✣ Perk Commands</li>
-    <li>₪ Access to /nick</li>
-    <li>₪ Access to /back</li>
-    <li>₪ Access to /disposal</li>
-    <li>₪ Access to /recipe</li>
-    <li>₪ Access to /feed</li>
-    <li>₪ Access to /near</li>
-    <li>₪ Access to /craft</li>
-    <li>₪ Access to /workbench</li>
-    <li>₪ Access to /ptime</li>
-    <li>₪ Access to /enderchest</li>
-  </ul>
-  <button onclick="buy('Elite')">CLICK TO BUY</button>
+<div id="levels" class="hidden">
+    <h2>Level tanlang</h2>
+    <button id="lvl3">Level 1 - Buyuk Ipak Yo'li</button>
 </div>
 
-<!-- Samurai -->
-<div class="item">
-  <h3><img src="https://i.imgur.com/ZGx2GkU.png" alt="Samurai Icon">Samurai</h3>
-  <ul>
-    <li>✣ Perk Commands</li>
-    <li>₪ Access to /back</li>
-    <li>₪ Access to /nick</li>
-    <li>₪ Access to /recipe</li>
-    <li>₪ Access to /feed</li>
-    <li>₪ Access to /disposal</li>
-    <li>₪ Access to /near</li>
-    <li>₪ Access to /craft</li>
-    <li>₪ Access to /enderchest</li>
-    <li>₪ Access to /ptime</li>
-    <li>₪ Access to /heal</li>
-  </ul>
-  <button onclick="buy('Samurai')">CLICK TO BUY</button>
+<div id="cards" class="hidden"></div>
+
+<div id="qna" class="hidden">
+    <h4 id="questionText"></h4>
+    <div id="answerButtons"></div>
 </div>
 
-<!-- Champion -->
-<div class="item">
-  <h3><img src="https://i.imgur.com/4GfzTQ2.png" alt="Champion Icon">Champion</h3>
-  <ul>
-    <li>✣ Perk Commands</li>
-    <li>₪ Access to /hat</li>
-    <li>₪ Access to /craft</li>
-    <li>₪ Access to /recipe</li>
-    <li>₪ Access to /anvil</li>
-    <li>₪ Access to /back</li>
-    <li>₪ Access to /enderchest</li>
-    <li>₪ Access to /feed</li>
-    <li>₪ Access to /smithingtable</li>
-    <li>₪ Access to /disposal</li>
-  </ul>
-  <button onclick="buy('Champion')">CLICK TO BUY</button>
-</div>
-
-<!-- GOD -->
-<div class="item">
-  <h3><img src="https://i.imgur.com/v6B7D3H.png" alt="GOD Icon">GOD</h3>
-  <ul>
-    <li>✣ Perk Commands</li>
-    <li>₪ Access to /back</li>
-    <li>₪ Access to /nick</li>
-    <li>₪ Access to /recipe</li>
-    <li>₪ Access to /feed</li>
-    <li>₪ Access to /disposal</li>
-    <li>₪ Access to /near</li>
-    <li>₪ Access to /craft</li>
-    <li>₪ Access to /enderchest</li>
-    <li>₪ Access to /ptime</li>
-    <li>₪ Access to /heal</li>
-    <li>₪ Access to /tempfly (50Hr)</li>
-  </ul>
-  <button onclick="buy('GOD')">CLICK TO BUY</button>
-</div>
-
-</section>
-
-<!-- Footer -->
-<footer>
-  <div>
-    <button class="fbtn" onclick="window.open('https://discord.gg/5Aeekk3G','_blank')">Discord</button>
-    <button class="fbtn" onclick="window.open('https://t.me/LonexNetwork_bot','_blank')">Telegram</button>
-  </div>
-  &copy; 2026 LonexLifeSteal
-</footer>
-
+<!-- Particle effect -->
+<div id="particles-js"></div>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
-// Copy IP
-function copyIP() {
-  var copyText = document.getElementById("serverIP");
-  copyText.select();
-  copyText.setSelectionRange(0, 99999);
-  navigator.clipboard.writeText(copyText.value);
-  alert("Server IP copied!");
-}
-
-// Join Server
-function joinServer() {
-  alert("Launch Minecraft and join: " + document.getElementById("serverIP").value);
-}
-
-// Buy demo
-function buy(rank) {
-  alert(rank + " uchun to'lov oynasi (backend bilan keyin bog'lanadi)");
-}
-
-// mcstatus.io API bilan server holati
-fetch('https://api.mcstatus.io/v2/status/java/radio-violations.gl.joinmc.link')
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('players').innerText = data.players.online;
-    document.getElementById('serverState').innerText = data.online ? "Online" : "Offline";
-  })
-  .catch(err => {
-    document.getElementById('players').innerText = "Xatolik";
-    document.getElementById('serverState').innerText = "Offline";
-  });
+particlesJS("particles-js", {
+  "particles": {
+    "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+    "color": { "value": "#00ffff" },
+    "shape": { "type": "circle" },
+    "opacity": { "value": 0.5, "random": true },
+    "size": { "value": 3, "random": true },
+    "line_linked": { "enable": true, "distance": 150, "color": "#0ff", "opacity": 0.4, "width": 1 },
+    "move": { "enable": true, "speed": 2, "direction": "none", "random": true, "straight": false, "out_mode": "out" }
+  },
+  "interactivity": {
+    "detect_on": "canvas",
+    "events": {
+      "onhover": { "enable": true, "mode": "repulse" },
+      "onclick": { "enable": true, "mode": "push" }
+    },
+    "modes": {
+      "repulse": { "distance": 100, "duration": 0.4 },
+      "push": { "particles_nb": 4 }
+    }
+  },
+  "retina_detect": true
+});
 </script>
 
+<script src="questions.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
